@@ -24,13 +24,22 @@ public class PlayerController : MonoBehaviour
     float animSpeed;
     public bool isInputBlocked = true;
     public bool isMove;
-
+    [Header("人物的基本属性")]
+    public CharacterStats characterStats;
     
-
+    void InitPlayerStats()
+    {
+        characterStats.maxHealth = 100;
+        characterStats.currentHealth = characterStats.maxHealth;
+        characterStats.maxDefend = 3;
+        characterStats.currentDefend = characterStats.maxDefend;
+    }    
 
     void Start()
     {
         anim = GetComponent<Animator>();
+        characterStats = GetComponent<CharacterStats>();
+        InitPlayerStats();
     }
     void Update()
     { 
