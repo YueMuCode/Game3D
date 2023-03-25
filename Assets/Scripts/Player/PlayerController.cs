@@ -9,7 +9,8 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public LayerMask layerMask;
     [Header("移动速度及镜头旋转的速度等参数")]
-    public float speed = 10f;
+    public float speed = 5f;
+    public float maxSpeed = 10f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     [Header("重力参数和地面的检测参数")]
@@ -64,7 +65,7 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-         //   character.Move(moveDir.normalized * speed * Time.deltaTime);,因为下方的函数使用了movdToWards,就是朝中面向的方向平移，那么这里可用可不用
+            character.Move(moveDir.normalized * speed * Time.deltaTime);//,因为下方的函数使用了movdToWards,就是朝中面向的方向平移，那么这里可用可不用
 
             isMove = true;
         }else
@@ -79,12 +80,19 @@ public class PlayerController : MonoBehaviour
 
         // Vector3 horizontalVelocity = new Vector3(character.velocity.x, 0, character.velocity.z);
         float deSpeed = 0f;
-        if (isMove)
+        if (isMove&& !Input.GetKeyDown(KeyCode.LeftShift))
         {
+           
             deSpeed = speed;
+
+        }
+        if (Input.GetKey(KeyCode.LeftShift)&&isMove)
+        {
+            deSpeed = maxSpeed;
+            Debug.Log("按下了shift");
         }
         animSpeed = Mathf.MoveTowards(animSpeed, deSpeed,Time.deltaTime*20);;
-        anim.SetFloat("Speed", animSpeed);
+        anim.SetFloat("Speed", animSpeed);//
         isGround = Physics.CheckSphere(groundCheck.position, checkRadius, layerMask);
         if (isGround && Input.GetButtonDown("Jump")&&isInputBlocked)
         {
