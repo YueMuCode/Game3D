@@ -17,7 +17,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     [Header("敌人的基本参数：巡逻范围等")]
     public float sightRadius;//视野范围
     public float patrolRadius;//巡逻范围
-    protected GameObject attackTarget;//攻击目标
+    public GameObject attackTarget;//攻击目标
     protected float normalSpeed;
     public bool isGUARD;//是不是站桩怪
     protected Vector3 guardPos;//站桩的坐标
@@ -253,7 +253,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         }
        else  if (TargetInSkillRange())
         {
-            // anim.SetTrigger("Skill");
+            anim.SetTrigger("Skill");
             Debug.Log("进入了远程攻击的范围");
         }
     }
