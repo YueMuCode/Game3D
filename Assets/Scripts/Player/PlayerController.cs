@@ -125,7 +125,8 @@ public class PlayerController : MonoBehaviour,IDamageTable
             anim.SetBool("Ground", isGround);
             
         }
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Land"))
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Land")||anim.GetCurrentAnimatorStateInfo(1).IsName("Hit")||anim.GetCurrentAnimatorStateInfo(2).IsName("Attack")
+            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack"))
         {           
             isInputBlocked = false;
         }
