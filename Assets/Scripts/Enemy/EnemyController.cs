@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public enum EnemyStates { GUARD, PATROL, CHASE, DEAD }
 
 [RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(CharacterStats))]
 public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 {
     protected NavMeshAgent agent;
@@ -315,7 +316,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 
     public void GetHit(float damage,Transform attacker)
     {
-       
+        //Debug.Log(" ‹µΩ…À∫¶");
         characterStats.currentHealth -= damage;
 
         anim.SetTrigger("Hit");
