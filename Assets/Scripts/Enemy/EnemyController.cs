@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     protected EnemyStates enemyState;//敌人的当前状态
     protected Animator anim;
     public CharacterStats characterStats;
+
     [Header("敌人的基本参数：巡逻范围等")]
     public float sightRadius;//视野范围
     public float patrolRadius;//巡逻范围

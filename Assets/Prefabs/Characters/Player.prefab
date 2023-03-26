@@ -1135,10 +1135,12 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   checkRadius: 0.105
   jumoHeight: 3
+  anim: {fileID: 0}
   isInputBlocked: 1
   isMove: 0
   characterStats: {fileID: 0}
   isDead: 0
+  isCritical: 0
 --- !u!114 &1140935383343832997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4368,6 +4370,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8263273344460549794}
     m_Modifications:
+    - target: {fileID: 2121722263508852730, guid: 789b3754c7c37f740beaf094ad0cf5e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6001485524104834219, guid: 789b3754c7c37f740beaf094ad0cf5e7, type: 3}
       propertyPath: m_IsTrigger
       value: 1
