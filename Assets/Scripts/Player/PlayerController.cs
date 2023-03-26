@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour,IDamageTable
 {
     public CharacterController character;    
     public Transform cam;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool isMove;
     [Header("人物的基本属性")]
     public CharacterStats characterStats;
-    
+    public bool isDead;
     void InitPlayerStats()
     {
         characterStats.maxHealth = 100;
@@ -40,11 +40,19 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         characterStats = GetComponent<CharacterStats>();
         InitPlayerStats();
+        GameManager.Instance.RigisterPlayer(characterStats);//将人物的数据注册给manager
     }
     void Update()
-    { 
+    {
+        isDead = characterStats.currentHealth <= 0;
         PlayerMove();
         PlayerAnimation();
+        if (isDead)
+        {
+            GameManager.Instance.NotifyObserver();//开始广播
+        }
+       
+        
     }
     void PlayerMove()//这个函数完成了人物的跑路功能，以及将重力的效果添加给人物，使人物在移动的时候能够下落
     {
@@ -123,6 +131,15 @@ public class PlayerController : MonoBehaviour
         {
             isInputBlocked = true;
         }
-      
+        anim.SetBool("Dead", isDead);
+
     }
+
+    #region 实现的接口
+    public void GetHit(float damage)
+    {
+        characterStats.currentHealth -= damage;
+        anim.SetTrigger("Hit");
+    }
+    #endregion
 }

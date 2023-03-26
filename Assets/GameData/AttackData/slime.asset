@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b7998e2c7755e4489599d3792a0d764, type: 3}
-  m_Name: New AttackData
+  m_Name: slime
   m_EditorClassIdentifier: 
-  attackRange: 1
-  skillRange: 1
-  coolDown: 1
+  attackRange: 1.2
+  skillRange: 1.2
+  coolDown: 1.5
   minDamage: 7
   maxDamage: 9
-  criticalMultiplier: 2
+  criticalMultiplier: 10
   criticalChance: 0.3

@@ -6,12 +6,12 @@ using UnityEngine.AI;
 public enum EnemyStates { GUARD, PATROL, CHASE, DEAD }
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour,IEndGameObserver
 {
     protected NavMeshAgent agent;
     protected EnemyStates enemyState;//敌人的当前状态
     protected Animator anim;
-    protected CharacterStats characterStats;
+    public CharacterStats characterStats;
     [Header("敌人的基本参数：巡逻范围等")]
     public float sightRadius;//视野范围
     public float patrolRadius;//巡逻范围
@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     protected float normalSpeed;
     public bool isGUARD;//是不是站桩怪
     protected Vector3 guardPos;//站桩的坐标
+    public Quaternion guardRotation;
     protected Vector3 wayPoint;//随机的巡逻点
     public float lookAtTime;
     public float remainLookAtTime;
@@ -29,14 +30,18 @@ public class EnemyController : MonoBehaviour
     public bool isChase;
     public bool isWalk;
     public bool isFollow;//是否被拉脱战
-    protected bool isCritical;//当前是否暴击（需要和攻击数据中的暴击率进行计算获取值）
+    public bool isCritical;//当前是否暴击（需要和攻击数据中的暴击率进行计算获取值）
+    public bool isDead;
+
+    [Header("其他参数")]
+    bool playerIsDead = false;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         characterStats=GetComponent<CharacterStats>();
         guardPos = transform.position;//获取站桩的原始坐标
-        
+        guardRotation = transform.rotation;
     }
 
     void Start()
@@ -47,9 +52,13 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        SwitchStates();
-        SwitchAnimation();
-        lastAttackTime -= Time.deltaTime;//不断计时
+        if(!playerIsDead)
+        {
+            SwitchStates();
+            SwitchAnimation();
+            lastAttackTime -= Time.deltaTime;//不断计时
+        }
+       
     }
 
 
@@ -86,12 +95,18 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Chase", isChase);
         anim.SetBool("Follow", isFollow);
         anim.SetBool("Critical", isCritical);
+        anim.SetBool("Dead", isDead);
     }
    
 
     void SwitchStates()//完成敌人的各种状态的切换
     {
-        if(isFoundPlayer())
+        if(isDead)
+        {
+            enemyState = EnemyStates.DEAD;
+        }
+
+         else  if(isFoundPlayer())
         {
             enemyState = EnemyStates.CHASE; 
             Debug.Log("发现玩家！");
@@ -116,7 +131,18 @@ public class EnemyController : MonoBehaviour
 
     void GUARD()
     {
-
+        isChase = false;
+        if (transform.position != guardPos)
+        {
+            isWalk = true;
+            agent.isStopped = false;
+            agent.destination = guardPos;
+            if (Vector3.SqrMagnitude(guardPos - transform.position) <= agent.stoppingDistance)
+            {
+                isWalk = false;
+                transform.rotation = Quaternion.Lerp(transform.rotation, guardRotation, .01f);
+            }
+        }
     }
     void PATROL()
     {
@@ -191,7 +217,9 @@ public class EnemyController : MonoBehaviour
     }
     void DEAD()
     {
-
+        GetComponent<Collider>().enabled = false;
+        agent.radius = 0;
+        Destroy(this.gameObject, 2f);
     }
 
     void GetNewWayPoint()//获取随机的巡逻点
@@ -257,4 +285,29 @@ public class EnemyController : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, sightRadius);
     }
+
+    #region 实现的接口
+    void OnEnable()//激活就称为了观察者
+    {
+        GameManager.Instance.AddObserver(this);
+    }
+    //void OnDisable()
+    //{
+    //    GameManager.Instance.RemoveObserver(this);
+    //}
+    public void EndNotify()//IEndGameObsetver观察者模式
+    {
+        //获胜
+        //停止活动
+        //播放胜利的动画
+        //音乐？
+        playerIsDead = true;
+        isChase = false;
+        isFollow = false;
+        attackTarget = null;
+        anim.SetBool("Win", true);
+    } 
+    #endregion
+
+
 }
