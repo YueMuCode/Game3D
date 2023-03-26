@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IDamageTable
 {
-    void GetHit(float damage);
+    void GetHit(float damage,Transform attacker);
 }

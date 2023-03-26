@@ -20,13 +20,14 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public float jumoHeight = 3f;
     private bool isGround;
     [Header("人物的动画变量")]
-    private Animator anim;
+    public  Animator anim;
     float animSpeed;
     public bool isInputBlocked = true;
     public bool isMove;
     [Header("人物的基本属性")]
     public CharacterStats characterStats;
     public bool isDead;
+    public bool isCritical;//是否暴击
     void InitPlayerStats()
     {
         characterStats.maxHealth = 100;
@@ -45,6 +46,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     void Update()
     {
         isDead = characterStats.currentHealth <= 0;
+        isCritical = Random.value <= characterStats.criticalChance;
         PlayerMove();
         PlayerAnimation();
         if (isDead)
@@ -134,16 +136,20 @@ public class PlayerController : MonoBehaviour,IDamageTable
         anim.SetBool("Dead", isDead);
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("按下了鼠标左键");
+          //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");
         }
+        anim.SetBool("Critical", isCritical);
     }
 
     #region 实现的接口
-    public void GetHit(float damage)
+    public void GetHit(float damage,Transform attacker)
     {
-        characterStats.currentHealth -= damage;
-        anim.SetTrigger("Hit");
+        characterStats.currentHealth -= damage;   
+        if(attacker.GetComponent<EnemyController>().isCritical)
+        {
+            anim.SetTrigger("Hit");
+        }
     }
     #endregion
 }

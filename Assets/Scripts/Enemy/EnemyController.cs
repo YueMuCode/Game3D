@@ -89,6 +89,8 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
             enemyState = EnemyStates.PATROL;//巡逻
             GetNewWayPoint();
         }
+        characterStats.currentHealth = characterStats.maxHealth;
+        GameManager.Instance.AddObserver(this);
     }
     void SwitchAnimation()
     {
@@ -97,6 +99,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         anim.SetBool("Follow", isFollow);
         anim.SetBool("Critical", isCritical);
         anim.SetBool("Dead", isDead);
+
     }
    
 
@@ -110,7 +113,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
          else  if(isFoundPlayer())
         {
             enemyState = EnemyStates.CHASE; 
-            Debug.Log("发现玩家！");
+          //  Debug.Log("发现玩家！");
         }
         switch(enemyState)
         {
@@ -290,7 +293,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     #region 实现的接口
     void OnEnable()//激活就称为了观察者
     {
-        GameManager.Instance.AddObserver(this);
+        
     }
     //void OnDisable()
     //{
@@ -309,9 +312,17 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         anim.SetBool("Win", true);
     }
 
-    public void GetHit(float damage)
+    public void GetHit(float damage,Transform attacker)
     {
+       
         characterStats.currentHealth -= damage;
+
+        anim.SetTrigger("Hit");
+        //if(attacker.GetComponent<PlayerController>().isCritical)
+        //{
+            
+        //}
+        anim.SetBool("Dizzy", attacker.GetComponent<PlayerController>().isCritical);
     }
     #endregion
 
