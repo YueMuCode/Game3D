@@ -8,28 +8,35 @@ public enum EnemyStates { GUARD, PATROL, CHASE, DEAD }
 [RequireComponent(typeof(NavMeshAgent))]
 public class EnemyController : MonoBehaviour
 {
-    private NavMeshAgent agent;
-    private EnemyStates enemyState;//敌人的当前状态
-    private Animator anim;
+    protected NavMeshAgent agent;
+    protected EnemyStates enemyState;//敌人的当前状态
+    protected Animator anim;
+    protected CharacterStats characterStats;
     [Header("敌人的基本参数：巡逻范围等")]
     public float sightRadius;//视野范围
     public float patrolRadius;//巡逻范围
-    private GameObject attackTarget;//攻击目标
-    private float normalSpeed;
+    protected GameObject attackTarget;//攻击目标
+    protected float normalSpeed;
     public bool isGUARD;//是不是站桩怪
-    private Vector3 guardPos;//站桩的坐标
-    private Vector3 wayPoint;//随机的巡逻点
+    protected Vector3 guardPos;//站桩的坐标
+    protected Vector3 wayPoint;//随机的巡逻点
     public float lookAtTime;
     public float remainLookAtTime;
-    [Header("触发动画的参数")]
+    protected float lastAttackTime=0f;//下一次攻击的时间
+    
+
+   [Header("触发动画的参数")]
     public bool isChase;
     public bool isWalk;
     public bool isFollow;//是否被拉脱战
+    protected bool isCritical;//当前是否暴击（需要和攻击数据中的暴击率进行计算获取值）
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        characterStats=GetComponent<CharacterStats>();
         guardPos = transform.position;//获取站桩的原始坐标
+        
     }
 
     void Start()
@@ -42,6 +49,7 @@ public class EnemyController : MonoBehaviour
     {
         SwitchStates();
         SwitchAnimation();
+        lastAttackTime -= Time.deltaTime;//不断计时
     }
 
 
@@ -77,6 +85,7 @@ public class EnemyController : MonoBehaviour
         anim.SetBool("Walk", isWalk);
         anim.SetBool("Chase", isChase);
         anim.SetBool("Follow", isFollow);
+        anim.SetBool("Critical", isCritical);
     }
    
 
@@ -117,9 +126,7 @@ public class EnemyController : MonoBehaviour
        
         if (Vector3.Distance(wayPoint, transform.position) <= agent.stoppingDistance) //判断自身位置和巡逻的目标位置
         {
-
-            isWalk = false;
-            
+            isWalk = false;           
             if (remainLookAtTime > 0)//让怪物停下来一丢丢时间然后开始继续巡逻
             {
                 remainLookAtTime -= Time.deltaTime;
@@ -128,9 +135,6 @@ public class EnemyController : MonoBehaviour
             {
                 GetNewWayPoint();
             }
-
-
-
         }
         else
         {
@@ -164,8 +168,26 @@ public class EnemyController : MonoBehaviour
         else
         {
             isFollow = true;//开始跟随玩家
+            agent.isStopped = false;
             agent.destination = attackTarget.transform.position;
+            
         }
+        if(TargetInAttackRange()||TargetInSkillRange())
+        {
+            isFollow = false;
+            agent.isStopped = true;
+            if (lastAttackTime<=0)
+            {
+                lastAttackTime = characterStats.coolDown;//重置攻击的冷却时间
+                isCritical = Random.value < characterStats.criticalChance;//获取是否暴击的值
+                Attack();
+            }
+        }
+
+
+
+
+
     }
     void DEAD()
     {
@@ -184,7 +206,49 @@ public class EnemyController : MonoBehaviour
     }
     #endregion
 
+    #region 敌人的攻击判断触发等等
+    void Attack()
+    {
+        transform.LookAt (attackTarget.transform.position);//先面向敌人
+       
+        if(TargetInAttackRange())
+        {
+            
+            anim.SetTrigger("Attack");//攻击不能用状态来实现
+            Debug.Log("进入了近战攻击的范围");
+        }
+       else  if (TargetInSkillRange())
+        {
+            // anim.SetTrigger("Skill");
+            Debug.Log("进入了远程攻击的范围");
+        }
+    }
 
+
+
+    bool TargetInAttackRange()//判断是否在攻击范围内
+    {
+        if (attackTarget != null)
+        {
+            return Vector3.Distance(attackTarget.transform.position, this.transform.position) <= characterStats.attackRange;//.attackRange
+        }
+        else
+        {
+            return false;
+        }
+    }
+    bool TargetInSkillRange()//判断是否在远程攻击范围内
+    {
+        if (attackTarget != null)
+        {
+            return Vector3.Distance(attackTarget.transform.position, this.transform.position) <= characterStats.skillRange;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    #endregion
 
     private void OnDrawGizmosSelected()
     {

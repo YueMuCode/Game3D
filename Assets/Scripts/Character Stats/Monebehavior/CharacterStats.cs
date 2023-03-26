@@ -81,7 +81,7 @@ public class CharacterStats : MonoBehaviour
     #endregion
 
     #region 获取数据库中的攻击属性的数据
-    public float attackRnage
+    public float attackRange
     {
         get
         {
