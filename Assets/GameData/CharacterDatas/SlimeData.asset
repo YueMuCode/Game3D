@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: SlimeData
   m_EditorClassIdentifier: 
   maxHealth: 30
-  currentHealth: 30
+  currentHealth: 999070
   maxDefend: 2
   currentDefend: 2

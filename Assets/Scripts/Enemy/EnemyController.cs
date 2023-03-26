@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public enum EnemyStates { GUARD, PATROL, CHASE, DEAD }
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class EnemyController : MonoBehaviour,IEndGameObserver
+public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 {
     protected NavMeshAgent agent;
     protected EnemyStates enemyState;//敌人的当前状态
@@ -52,6 +52,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver
 
     void Update()
     {
+        isDead = characterStats.currentHealth <= 0;
         if(!playerIsDead)
         {
             SwitchStates();
@@ -306,7 +307,12 @@ public class EnemyController : MonoBehaviour,IEndGameObserver
         isFollow = false;
         attackTarget = null;
         anim.SetBool("Win", true);
-    } 
+    }
+
+    public void GetHit(float damage)
+    {
+        characterStats.currentHealth -= damage;
+    }
     #endregion
 
 

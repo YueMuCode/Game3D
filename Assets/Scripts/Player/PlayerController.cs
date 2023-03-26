@@ -132,7 +132,11 @@ public class PlayerController : MonoBehaviour,IDamageTable
             isInputBlocked = true;
         }
         anim.SetBool("Dead", isDead);
-
+        if(Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Debug.Log("按下了鼠标左键");
+            anim.SetTrigger("Attack");
+        }
     }
 
     #region 实现的接口
