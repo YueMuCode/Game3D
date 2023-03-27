@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393a98163ef649d45882d8b35d253ec2, type: 3}
-  m_Name: FootMan
+  m_Script: {fileID: 11500000, guid: 4b7998e2c7755e4489599d3792a0d764, type: 3}
+  m_Name: BanditA
   m_EditorClassIdentifier: 
-  maxHealth: 40
-  currentHealth: 40
-  maxDefend: 2
-  currentDefend: 4
+  attackRange: 1
+  skillRange: 1
+  coolDown: 0.5
+  minDamage: 2
+  maxDamage: 4
+  criticalMultiplier: 2
+  criticalChance: 0.6

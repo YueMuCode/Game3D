@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 393a98163ef649d45882d8b35d253ec2, type: 3}
-  m_Name: FootMan
+  m_Name: BanditB
   m_EditorClassIdentifier: 
-  maxHealth: 40
-  currentHealth: 40
-  maxDefend: 2
-  currentDefend: 4
+  maxHealth: 50
+  currentHealth: 50
+  maxDefend: 3
+  currentDefend: 3
