@@ -1153,7 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5699bc2bb7b3f0748b88bb6c67efdc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData_so: {fileID: 11400000, guid: cbe74c89648eee349a435f57a353e9de, type: 2}
+  tempplateCharacterData_so: {fileID: 11400000, guid: cbe74c89648eee349a435f57a353e9de, type: 2}
   attackData_SO: {fileID: 11400000, guid: 5286a83b8ad65684d96910314328ead9, type: 2}
 --- !u!1 &8260876149746701724
 GameObject:

@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     void Update()
     {
         isDead = characterStats.currentHealth <= 0;
-        isCritical = Random.value <= characterStats.criticalChance;
+       
         PlayerMove();
         PlayerAnimation();
         if (isDead)
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
             
         }
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("Land")||anim.GetCurrentAnimatorStateInfo(1).IsName("Hit")||anim.GetCurrentAnimatorStateInfo(2).IsName("Attack")
-            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack"))
+            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack")|| anim.GetCurrentAnimatorStateInfo(1).IsName("Dizzy"))
         {           
             isInputBlocked = false;
         }
@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
           //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");
+            isCritical = Random.value <= characterStats.criticalChance;
         }
         anim.SetBool("Critical", isCritical);
     }
@@ -147,9 +148,13 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public void GetHit(float damage,Transform attacker)
     {
         characterStats.currentHealth -= damage;   
-        if(attacker.GetComponent<EnemyController>().isCritical)
+        if(attacker.GetComponent<EnemyController>().isCritical&& !attacker.GetComponent<EnemyController>().skill)//远程攻击不能暴击
         {
             anim.SetTrigger("Hit");
+        }
+        else
+        {
+
         }
     }
     #endregion

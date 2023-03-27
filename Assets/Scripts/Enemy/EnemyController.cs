@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 {
     protected NavMeshAgent agent;
     protected EnemyStates enemyState;//敌人的当前状态
-    protected Animator anim;
+    public  Animator anim;
     public CharacterStats characterStats;
 
     [Header("敌人的基本参数：巡逻范围等")]
@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 
     [Header("其他参数")]
     bool playerIsDead = false;
+    public bool skill;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -249,18 +250,20 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         {
             
             anim.SetTrigger("Attack");//攻击不能用状态来实现
+            skill = false;
             Debug.Log("进入了近战攻击的范围");
         }
        else  if (TargetInSkillRange())
         {
             anim.SetTrigger("Skill");
+            skill = true;
             Debug.Log("进入了远程攻击的范围");
         }
     }
 
 
 
-    bool TargetInAttackRange()//判断是否在攻击范围内
+   public  bool TargetInAttackRange()//判断是否在攻击范围内
     {
         if (attackTarget != null)
         {
@@ -271,7 +274,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
             return false;
         }
     }
-    bool TargetInSkillRange()//判断是否在远程攻击范围内
+   public  bool TargetInSkillRange()//判断是否在远程攻击范围内
     {
         if (attackTarget != null)
         {
@@ -320,11 +323,17 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         characterStats.currentHealth -= damage;
 
         anim.SetTrigger("Hit");
-        //if(attacker.GetComponent<PlayerController>().isCritical)
+        //if(anim.GetCurrentAnimatorStateInfo(2).IsName("Dizzy"))
         //{
-            
+        //    Debug.Log("正在播放眩晕动画");
+        //    anim.SetBool("Dizzy", false);
         //}
-        anim.SetBool("Dizzy", attacker.GetComponent<PlayerController>().isCritical);
+        //else
+        //{
+           
+        //}
+        //anim.SetBool("Dizzy", false);
+       
     }
     #endregion
 
