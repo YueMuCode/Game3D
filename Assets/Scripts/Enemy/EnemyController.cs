@@ -324,7 +324,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     {
         //Debug.Log(" ‹µΩ…À∫¶");
         characterStats.currentHealth -= damage;
-
+        anim.SetBool("Dizzy", attacker.GetComponent<PlayerController>().isCritical);
         anim.SetTrigger("Hit");
         //if(anim.GetCurrentAnimatorStateInfo(2).IsName("Dizzy"))
         //{

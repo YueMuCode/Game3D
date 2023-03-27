@@ -8,11 +8,11 @@ public class WeaponHitPoint : MonoBehaviour
     {
         if(other.CompareTag("Enemy")|| other.CompareTag("FootMan"))
         {
-            other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", false);
+           // other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", false);
             if (FindObjectOfType<PlayerController>().isCritical)
             {
                // other.transform.GetComponent<EnemyController>().anim.SetTrigger("Dizzy");
-                other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", true);
+              //  other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", true);
                 other.transform.GetComponent<EnemyController>().GetHit(5 * FindObjectOfType<PlayerController>().characterStats.criticalMultiplier, FindObjectOfType<PlayerController>().transform);
                  
                 // anim.SetTrigger("Dizzy");
