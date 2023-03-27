@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public bool isCritical;//ÊÇ·ñ±©»÷
     void InitPlayerStats()
     {
-        characterStats.maxHealth = 100;
+        
         characterStats.currentHealth = characterStats.maxHealth;
         characterStats.maxDefend = 3;
         characterStats.currentDefend = characterStats.maxDefend;

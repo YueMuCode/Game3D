@@ -25,7 +25,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     protected Vector3 wayPoint;//随机的巡逻点
     public float lookAtTime;
     public float remainLookAtTime;
-    protected float lastAttackTime=0f;//下一次攻击的时间
+    public float lastAttackTime=0f;//下一次攻击的时间
     
 
    [Header("触发动画的参数")]
@@ -209,8 +209,11 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         {
             isFollow = false;
             agent.isStopped = true;
+            Debug.Log("停下！");
+            agent.velocity = Vector3.zero;//防止速度过高的时候进行攻击的时候会滑动！
             if (lastAttackTime<=0)
             {
+                
                 lastAttackTime = characterStats.coolDown;//重置攻击的冷却时间
                 isCritical = Random.value < characterStats.criticalChance;//获取是否暴击的值
                 Attack();
@@ -251,7 +254,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
             
             anim.SetTrigger("Attack");//攻击不能用状态来实现
             skill = false;
-            Debug.Log("进入了近战攻击的范围");
+            Debug.Log("执行一次攻击");
         }
        else  if (TargetInSkillRange())
         {
