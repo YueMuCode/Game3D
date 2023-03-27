@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 15
   hitTarget: {fileID: 0}
+  rockBreak: {fileID: 8060997725695190496, guid: fda07c98c5a0a44449b2b1abd81006fa, type: 3}

@@ -8,7 +8,7 @@ public class Rock : MonoBehaviour
     public float force;//撞击的力
     public GameObject hitTarget;//撞击的目标
     private Vector3 direction;
-
+    public GameObject rockBreak;
 
 
     private void Start()
@@ -26,6 +26,11 @@ public class Rock : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(collision.transform.CompareTag("Ground"))
+        {
+          //  Instantiate(rockBreak, transform.position, Quaternion.identity);
+            
+        }
         if(collision.transform.CompareTag("Player"))
         {
             collision.transform.GetComponent<PlayerController>().GetHit(FindObjectOfType<Golem>().GetComponent<Golem>().characterStats.maxDamage, FindObjectOfType<Golem>().transform);
@@ -39,6 +44,8 @@ public class Rock : MonoBehaviour
         if(collision.transform.CompareTag("Player"))
         {
             collision.transform.GetComponent<PlayerController>().velocity = Vector3.zero;
+            Instantiate(rockBreak, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
         
     }

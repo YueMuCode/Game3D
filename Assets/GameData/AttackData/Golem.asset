@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Golem
   m_EditorClassIdentifier: 
   attackRange: 4
-  skillRange: 12
+  skillRange: 11
   coolDown: 2
-  minDamage: 2
-  maxDamage: 4
+  minDamage: 5
+  maxDamage: 1
   criticalMultiplier: 2
-  criticalChance: 0.3
+  criticalChance: 0
