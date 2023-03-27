@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 
 
     #region 敌人进入不同状态下的代码+敌人的动画
-    bool isFoundPlayer()//用于检测是否发现玩家进而执行状态的相关操作
+  public virtual bool isFoundPlayer()//用于检测是否发现玩家进而执行状态的相关操作
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, sightRadius);//检测圆圈范围内的的collider，如果是玩家就进行发现操作
         foreach (Collider target in colliders)

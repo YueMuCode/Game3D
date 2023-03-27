@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd86abc5cb0c1f46a3567193294c039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   characterStats: {fileID: 0}
   sightRadius: 5
   patrolRadius: 6.22
@@ -564,6 +565,7 @@ MonoBehaviour:
   isFollow: 0
   isCritical: 0
   isDead: 0
+  skill: 0
 --- !u!114 &1508079175752621699
 MonoBehaviour:
   m_ObjectHideFlags: 0

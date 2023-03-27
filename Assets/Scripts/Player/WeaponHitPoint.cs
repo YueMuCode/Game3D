@@ -6,7 +6,7 @@ public class WeaponHitPoint : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(other.CompareTag("Enemy")|| other.CompareTag("FootMan"))
         {
             other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", false);
             if (FindObjectOfType<PlayerController>().isCritical)
