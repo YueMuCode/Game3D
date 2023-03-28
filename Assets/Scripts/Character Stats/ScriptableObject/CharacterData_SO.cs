@@ -11,5 +11,17 @@ public class CharacterData_SO : ScriptableObject
     public float currentHealth;
     public float maxDefend;
     public float currentDefend;
+    [Header("击杀获得的经验值")]
+    public int killExp;
+
+
+
+    [Header("Level")]
+    public int maxLevel;
+    public int level;
+    public int needExp;//需要的经验值
+    public int currentExp;
+    public float levelUpBuffer;
+
 
 }

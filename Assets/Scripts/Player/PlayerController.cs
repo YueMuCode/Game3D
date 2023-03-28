@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class PlayerController : MonoBehaviour,IDamageTable
 {
+    
     public CharacterController character;    
     public Transform cam;
     public Transform groundCheck;
@@ -28,12 +29,19 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public CharacterStats characterStats;
     public bool isDead;
     public bool isCritical;//是否暴击
+
+    //更新UI用的委托
+    public event Action<int> UpdatePlayerHealth;//用于更新血条
     void InitPlayerStats()
     {
         
         characterStats.currentHealth = characterStats.maxHealth;
+        characterStats.currentExp = 0;
+        characterStats.needExp = 10;
+        characterStats.level = 1;
         characterStats.maxDefend = 3;
         characterStats.currentDefend = characterStats.maxDefend;
+        UpdatePlayerHealth?.Invoke(1);//因为healthbar的初始化不能够直接在start中，是代码的执行顺序问题这个bug详细记录，去看3.28日的笔记
     }    
 
     void Start()
@@ -53,8 +61,9 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
             GameManager.Instance.NotifyObserver();//开始广播
         }
-       
-        
+        isLevelUp();
+
+
     }
     void PlayerMove()//这个函数完成了人物的跑路功能，以及将重力的效果添加给人物，使人物在移动的时候能够下落
     {
@@ -139,11 +148,30 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
           //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");
-            isCritical = Random.value <= characterStats.criticalChance;
+            isCritical = UnityEngine.Random.value <= characterStats.criticalChance;
+            UpdatePlayerHealth?.Invoke(1);
         }
         anim.SetBool("Critical", isCritical);
     }
+    void isLevelUp()
+    {
+        int temp;
+        if(characterStats.level<characterStats.maxLevel&&characterStats.currentExp>=characterStats.needExp)
+        {
+            Debug.Log("升级！");
+            temp = characterStats.needExp;
+            characterStats.level += 1;
+            characterStats.needExp += characterStats.level * 20;
 
+            //进行防御、攻击的升级等等
+            characterStats.currentHealth = characterStats.maxHealth;
+            characterStats.currentExp -=temp;
+
+
+            UpdatePlayerHealth?.Invoke(1);
+        }
+
+    }
     #region 实现的接口
     public void GetHit(float damage,Transform attacker)
     {
@@ -156,6 +184,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
 
         }
+        UpdatePlayerHealth?.Invoke(1);
     }
     #endregion
 }

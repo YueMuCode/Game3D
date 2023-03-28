@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    private CharacterData_SO characterData_so;//获取 tempplateCharacterData_so生成的值，防止共用同一套数据
+    public CharacterData_SO characterData_so;//获取 tempplateCharacterData_so生成的值，防止共用同一套数据
     public CharacterData_SO tempplateCharacterData_so;//拖过unity界面拖动获取数据库
     public AttackData_SO attackData_SO;
 
     private void Awake()
     {
-        if(tempplateCharacterData_so!=null)
+        if(tempplateCharacterData_so!=null&&characterData_so==null)
         {
             characterData_so = Instantiate(tempplateCharacterData_so);
         }    
@@ -192,6 +192,99 @@ public class CharacterStats : MonoBehaviour
         set
         {
             attackData_SO.criticalChance = value;
+        }
+    }
+    #endregion
+
+    #region 升级系统所需要的数据
+    public int maxLevel
+    {
+        get
+        {
+            if (characterData_so)
+            {
+                return characterData_so.maxLevel;
+            }
+            return 0;
+        }
+        set
+        {
+            characterData_so.maxLevel = value;
+        }
+    }
+    public int level
+    {
+        get
+        {
+            if(characterData_so)
+            {
+                return characterData_so.level;
+            }
+            return 0;
+        }
+        set
+        {
+            characterData_so.level = value;
+        }
+    }
+    public int killExp
+    {
+        get
+        {
+            if(characterData_so)
+            {
+                return characterData_so.killExp;
+            }
+            return 0;
+        }
+        set
+        {
+            characterData_so.killExp = value;
+        }
+    }
+    public int needExp
+    {
+        get
+        {
+            if(characterData_so)
+            {
+                return characterData_so.needExp;
+            }
+            return 0;
+        }
+        set
+        {
+            characterData_so.needExp = value;
+        }
+    }
+    public int currentExp
+    {
+        get
+        {
+            if(characterData_so)
+            {
+                return characterData_so.currentExp;
+            }
+            return 0;
+        }
+        set
+        {
+            characterData_so.currentExp = value;
+        }
+    }
+    public float levelUpBuffer
+    {
+        get
+        {
+            if(characterData_so)
+            {
+                return characterData_so.levelUpBuffer;
+            }
+            return 0;
+        }
+        set
+        {
+            characterData_so.levelUpBuffer = value;
         }
     }
     #endregion

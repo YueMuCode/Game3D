@@ -331,16 +331,11 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         anim.SetBool("Dizzy", attacker.GetComponent<PlayerController>().isCritical);
         anim.SetTrigger("Hit");
         UpdateHealthBarOnAttack?.Invoke(1);
-        //if(anim.GetCurrentAnimatorStateInfo(2).IsName("Dizzy"))
-        //{
-        //    Debug.Log("正在播放眩晕动画");
-        //    anim.SetBool("Dizzy", false);
-        //}
-        //else
-        //{
-           
-        //}
-        //anim.SetBool("Dizzy", false);
+        if(characterStats.currentHealth<=0)
+        {
+            attacker.GetComponent<PlayerController>().characterStats.currentExp += characterStats.killExp;//怪物死亡将经验添加到玩家身上
+           // attacker.GetComponent<PlayerController>().UpdatePlayerHealth?.Invoke(1);事件只能在本类中唤醒
+        }
        
     }
     #endregion
