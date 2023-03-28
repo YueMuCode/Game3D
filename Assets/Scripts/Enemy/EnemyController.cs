@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public enum EnemyStates { GUARD, PATROL, CHASE, DEAD }
 
@@ -38,6 +39,9 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     [Header("其他参数")]
     bool playerIsDead = false;
     public bool skill;
+
+    
+    public event Action<int> UpdateHealthBarOnAttack;//用于更新血条
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -215,7 +219,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
             {
                 
                 lastAttackTime = characterStats.coolDown;//重置攻击的冷却时间
-                isCritical = Random.value < characterStats.criticalChance;//获取是否暴击的值
+                isCritical = UnityEngine.Random.value < characterStats.criticalChance;//获取是否暴击的值
                 Attack();
             }
         }
@@ -235,8 +239,8 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     void GetNewWayPoint()//获取随机的巡逻点
     {
         remainLookAtTime = lookAtTime;
-        float randomX = Random.Range(-patrolRadius, patrolRadius);
-        float randomZ = Random.Range(-patrolRadius, patrolRadius);
+        float randomX = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
+        float randomZ = UnityEngine.Random.Range(-patrolRadius, patrolRadius);
         Vector3 randomPoint = new Vector3(randomX + guardPos.x, this.transform.position.y, randomZ + guardPos.z);
         NavMeshHit hit;
         //判断这个选择的点是否是烘焙walkable的点，不是则返回原来的位置，然后重新找点。
@@ -326,6 +330,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         characterStats.currentHealth -= damage;
         anim.SetBool("Dizzy", attacker.GetComponent<PlayerController>().isCritical);
         anim.SetTrigger("Hit");
+        UpdateHealthBarOnAttack?.Invoke(1);
         //if(anim.GetCurrentAnimatorStateInfo(2).IsName("Dizzy"))
         //{
         //    Debug.Log("正在播放眩晕动画");

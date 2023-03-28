@@ -57,6 +57,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed980d41f0964164aa866d3aab0fbee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6575877613330078663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4273184043897968590}
+  m_Layer: 0
+  m_Name: HealthBarPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4273184043897968590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6575877613330078663}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.24, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8637881046397093905}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8631527942535465455
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,6 +102,7 @@ GameObject:
   - component: {fileID: 8631527942535465454}
   - component: {fileID: 8631527942535465442}
   - component: {fileID: 8631527942535465443}
+  - component: {fileID: 3515842107982141280}
   m_Layer: 0
   m_Name: FootmanBlack
   m_TagString: FootMan
@@ -93,6 +124,7 @@ Transform:
   - {fileID: 8637831952318799787}
   - {fileID: 8637522068044958807}
   - {fileID: 441923949}
+  - {fileID: 4273184043897968590}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -129,7 +161,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -150,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tempplateCharacterData_so: {fileID: 11400000, guid: 0790d3f7706f32143aa6659127cebe05, type: 2}
-  attackData_SO: {fileID: 11400000, guid: 942aa232479571945a758672165d5fdb, type: 2}
+  attackData_SO: {fileID: 11400000, guid: bc63b09d4a6e5e44194fa0fb7a609767, type: 2}
 --- !u!114 &8631527942535465454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +204,7 @@ MonoBehaviour:
   guardRotation: {x: 0, y: 0, z: 0, w: 0}
   lookAtTime: 2
   remainLookAtTime: 0
+  lastAttackTime: 0
   isChase: 0
   isWalk: 0
   isFollow: 0
@@ -207,6 +240,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3515842107982141280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8631527942535465455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3c6558ab9c85a4cb13eeca0657d84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarUIPrafab: {fileID: 6202415322494405585, guid: ad164c12494af11419e1ab072338bd44, type: 3}
+  cam: {fileID: 0}
+  barPoint: {fileID: 4273184043897968590}
+  alwaysVisible: 0
+  visibleTime: 5
 --- !u!1 &8631634308566119349
 GameObject:
   m_ObjectHideFlags: 0

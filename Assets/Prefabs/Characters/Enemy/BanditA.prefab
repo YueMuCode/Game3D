@@ -57,6 +57,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f855d6da4536748a20d23f2840e5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8849245207391255048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8525287765969492906}
+  m_Layer: 0
+  m_Name: HealthBarPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8525287765969492906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8849245207391255048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.13, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9088837754014395527}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9092774408939284427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2508,6 +2538,7 @@ GameObject:
   - component: {fileID: 9094567592472648410}
   - component: {fileID: 9094567592472648409}
   - component: {fileID: 9094567592472648408}
+  - component: {fileID: 7787563570892428718}
   m_Layer: 0
   m_Name: BanditA
   m_TagString: Enemy
@@ -2522,9 +2553,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9094567592472648391}
-  m_LocalRotation: {x: -0, y: -0.6055833, z: -0, w: 0.795782}
+  m_LocalRotation: {x: 0, y: -0.6055857, z: 0, w: 0.7957801}
   m_LocalPosition: {x: 24.76, y: 0.00000023841858, z: 87.47}
-  m_LocalScale: {x: 1.03, y: 1.03, z: 1.03}
+  m_LocalScale: {x: 1.0300003, y: 1.03, z: 1.0300003}
   m_Children:
   - {fileID: 9088891913295201213}
   - {fileID: 9088989555977842937}
@@ -2533,6 +2564,7 @@ Transform:
   - {fileID: 9088897255349824189}
   - {fileID: 9096686715108238061}
   - {fileID: 4022018693943656583}
+  - {fileID: 8525287765969492906}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -74.542, z: 0}
@@ -2564,16 +2596,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 9094567592472648391}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 8
+  m_Radius: 0.23
+  m_Speed: 10
+  m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 800
   m_StoppingDistance: 0.3
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.85
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -2612,6 +2644,7 @@ MonoBehaviour:
   guardRotation: {x: 0, y: 0, z: 0, w: 0}
   lookAtTime: 2
   remainLookAtTime: 0
+  lastAttackTime: 0
   isChase: 0
   isWalk: 0
   isFollow: 0
@@ -2629,8 +2662,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8736762, y: 1.7773287, z: 1.0280793}
-  m_Center: {x: 0.03227207, y: 0.9562302, z: 0.062472902}
+  m_Size: {x: 0.37518236, y: 1.7773287, z: 0.30229908}
+  m_Center: {x: -0.024544058, y: 0.9562302, z: 0.015577385}
 --- !u!54 &9094567592472648408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2647,6 +2680,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7787563570892428718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094567592472648391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3c6558ab9c85a4cb13eeca0657d84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarUIPrafab: {fileID: 6202415322494405585, guid: ad164c12494af11419e1ab072338bd44, type: 3}
+  cam: {fileID: 0}
+  barPoint: {fileID: 8525287765969492906}
+  alwaysVisible: 0
+  visibleTime: 5
 --- !u!1 &9094577291222965829
 GameObject:
   m_ObjectHideFlags: 0

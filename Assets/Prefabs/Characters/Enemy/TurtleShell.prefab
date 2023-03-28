@@ -871,6 +871,7 @@ GameObject:
   - component: {fileID: 940818624550467868}
   - component: {fileID: 940818624550467856}
   - component: {fileID: 940818624550467857}
+  - component: {fileID: 5219301349731672919}
   m_Layer: 0
   m_Name: TurtleShell
   m_TagString: Enemy
@@ -885,13 +886,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940818624550467869}
-  m_LocalRotation: {x: -0, y: -0.9611681, z: -0, w: 0.27596352}
+  m_LocalRotation: {x: 0, y: -0.9611679, z: 0, w: 0.27596456}
   m_LocalPosition: {x: 16.75, y: 0, z: 11.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 943908174178803729}
   - {fileID: 943710317250877323}
   - {fileID: 1570325982055518355}
+  - {fileID: 2847139311996047067}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -147.961, z: 0}
@@ -962,18 +964,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdd86abc5cb0c1f46a3567193294c039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   characterStats: {fileID: 0}
   sightRadius: 5
   patrolRadius: 6
+  attackTarget: {fileID: 0}
   isGUARD: 0
   guardRotation: {x: 0, y: 0, z: 0, w: 0}
   lookAtTime: 2
   remainLookAtTime: 0
+  lastAttackTime: 0
   isChase: 0
   isWalk: 0
   isFollow: 0
   isCritical: 0
   isDead: 0
+  skill: 0
 --- !u!54 &940818624550467856
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1003,6 +1009,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.3927196, y: 1.0649588, z: 1}
   m_Center: {x: -0.037187457, y: 0.6102781, z: 1.3996138e-10}
+--- !u!114 &5219301349731672919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940818624550467869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b3c6558ab9c85a4cb13eeca0657d84d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarUIPrafab: {fileID: 6202415322494405585, guid: ad164c12494af11419e1ab072338bd44, type: 3}
+  cam: {fileID: 0}
+  barPoint: {fileID: 2847139311996047067}
+  alwaysVisible: 0
+  visibleTime: 4
 --- !u!1 &940837905702189815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1246,3 +1269,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21f855d6da4536748a20d23f2840e5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &6367541707483899887
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2847139311996047067}
+  m_Layer: 0
+  m_Name: HealthBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2847139311996047067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6367541707483899887}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 943972765952709415}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

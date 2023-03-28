@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0b3c6558ab9c85a4cb13eeca0657d84d
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - healthBarUIPrafab: {fileID: 6202415322494405585, guid: ad164c12494af11419e1ab072338bd44, type: 3}
+  - cam: {instanceID: 0}
+  - barPoint: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
