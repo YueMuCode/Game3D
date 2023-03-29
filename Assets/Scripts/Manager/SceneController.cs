@@ -20,8 +20,10 @@ public class SceneController : SingleT<SceneController>
                 TransitionSameScene(transitionPoint.destinationTag);
                 break;
             case TransitionPoint.TransitionType.DifferentScene://如果是跨场景传送
-                Debug.Log(2);
-               StartCoroutine( TransitionDifferentScene(transitionPoint.sceneName, transitionPoint.destinationTag));
+                //Debug.Log(2);
+                SaveManager.Instance.SavePlayerData();//传送到下一个场景时保存玩家的基本属性数据
+                Debug.Log("成功保存数据");
+                StartCoroutine( TransitionDifferentScene(transitionPoint.sceneName, transitionPoint.destinationTag));
                 Debug.Log(2);
                 break;
         }
@@ -48,7 +50,9 @@ public class SceneController : SingleT<SceneController>
         {
             Destroy(FindObjectOfType<PlayerController>().gameObject);
         }
-            yield return Instantiate(playerPrefabs, GetDestinationPosition(destinationtag).transform.position, GetDestinationPosition(destinationtag).transform.rotation);//加载完场景后再生成玩家的预制体
+        yield return Instantiate(playerPrefabs, GetDestinationPosition(destinationtag).transform.position, GetDestinationPosition(destinationtag).transform.rotation);//加载完场景后再生成玩家的预制体
+        SaveManager.Instance.LoadPlayerData();//在场景加载完、人物生成好之后，把人物的基本属性的数据从硬盘中读到对象里面
+        Debug.Log("成功加载数据");
         yield break;
     }
     public TransitionDestination GetDestinationPosition(TransitionDestination.DestinationTag destinationtag)
