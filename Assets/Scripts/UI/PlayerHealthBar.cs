@@ -30,10 +30,10 @@ public class PlayerHealthBar : MonoBehaviour
             healthSlider = canvas.GetChild(0);
             expSlider = canvas.GetChild(1);
             text = canvas.GetChild(2);
-            
-            
-           
-           
+         //   healthSlider.GetComponent<Slider>().maxValue = player.characterStats.maxHealth;
+
+
+
         }
         else
         {

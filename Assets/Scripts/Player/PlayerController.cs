@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         characterStats.level = 1;
         characterStats.maxDefend = 3;
         characterStats.currentDefend = characterStats.maxDefend;
-        UpdatePlayerHealth?.Invoke(1);//因为healthbar的初始化不能够直接在start中，是代码的执行顺序问题这个bug详细记录，去看3.28日的笔记
+       
     }    
 
     void Start()
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         anim = GetComponent<Animator>();
         characterStats = GetComponent<CharacterStats>();
         InitPlayerStats();
+  
         GameManager.Instance.RigisterPlayer(characterStats);//将人物的数据注册给manager
     }
     void Update()
@@ -62,7 +63,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
             GameManager.Instance.NotifyObserver();//开始广播
         }
         isLevelUp();
-
+        UpdatePlayerHealth?.Invoke(1);//因为healthbar的初始化不能够直接在start中，是代码的执行顺序问题这个bug详细记录，去看3.28日的笔记
 
     }
     void PlayerMove()//这个函数完成了人物的跑路功能，以及将重力的效果添加给人物，使人物在移动的时候能够下落
