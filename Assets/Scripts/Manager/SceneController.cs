@@ -1,10 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class SceneController : SingleT<SceneController>
 {
     public GameObject player;
+    public GameObject playerPrefabs;
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
     public void TransitionToDestination(TransitionPoint transitionPoint)
     {
         switch (transitionPoint.transitionType)//检查传送的类型
@@ -14,7 +20,9 @@ public class SceneController : SingleT<SceneController>
                 TransitionSameScene(transitionPoint.destinationTag);
                 break;
             case TransitionPoint.TransitionType.DifferentScene://如果是跨场景传送
-               
+                Debug.Log(2);
+               StartCoroutine( TransitionDifferentScene(transitionPoint.sceneName, transitionPoint.destinationTag));
+                Debug.Log(2);
                 break;
         }
     }
@@ -33,7 +41,16 @@ public class SceneController : SingleT<SceneController>
 
         
     }
-
+    IEnumerator TransitionDifferentScene(string sceneName, TransitionDestination.DestinationTag destinationtag)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneName);//加载场景
+        if(FindObjectOfType<PlayerController>())//方便调试用
+        {
+            Destroy(FindObjectOfType<PlayerController>().gameObject);
+        }
+            yield return Instantiate(playerPrefabs, GetDestinationPosition(destinationtag).transform.position, GetDestinationPosition(destinationtag).transform.rotation);//加载完场景后再生成玩家的预制体
+        yield break;
+    }
     public TransitionDestination GetDestinationPosition(TransitionDestination.DestinationTag destinationtag)
     {
         var allDestination = FindObjectsOfType<TransitionDestination>();

@@ -1003,6 +1003,7 @@ GameObject:
   - component: {fileID: 8260872769828660861}
   - component: {fileID: 8260872769828660858}
   - component: {fileID: 1140935383343832997}
+  - component: {fileID: 2056869480}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1153,8 +1154,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5699bc2bb7b3f0748b88bb6c67efdc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData_so: {fileID: 11400000, guid: cbe74c89648eee349a435f57a353e9de, type: 2}
   tempplateCharacterData_so: {fileID: 11400000, guid: cbe74c89648eee349a435f57a353e9de, type: 2}
   attackData_SO: {fileID: 11400000, guid: 5286a83b8ad65684d96910314328ead9, type: 2}
+--- !u!114 &2056869480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260872769828660860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cec05caa07e82418bd114ba107704c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 0}
+  healthSlider: {fileID: 0}
+  expSlider: {fileID: 0}
+  text: {fileID: 0}
 --- !u!1 &8260876149746701724
 GameObject:
   m_ObjectHideFlags: 0

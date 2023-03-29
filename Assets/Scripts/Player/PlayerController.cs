@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         characterStats.level = 1;
         characterStats.maxDefend = 3;
         characterStats.currentDefend = characterStats.maxDefend;
+        cam = Camera.main.transform;
        
     }    
 

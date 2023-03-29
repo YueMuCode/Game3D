@@ -40,7 +40,7 @@ public class TransitionPoint : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E)&&canTransition)
         {
-           // Debug.Log("你按下了Q");
+            Debug.Log("你按下了E");
             SceneController.Instance.TransitionToDestination(this);
             canTransition = false;
             //Debug.Log(canTransition);
