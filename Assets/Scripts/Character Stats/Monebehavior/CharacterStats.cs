@@ -7,7 +7,7 @@ public class CharacterStats : MonoBehaviour
     public CharacterData_SO characterData_so;//获取 tempplateCharacterData_so生成的值，防止共用同一套数据
     public CharacterData_SO tempplateCharacterData_so;//拖过unity界面拖动获取数据库
     public AttackData_SO attackData_SO;
-
+    public ItemData_SO itemData_SO;
     private void Awake()
     {
         if(tempplateCharacterData_so!=null&&characterData_so==null)

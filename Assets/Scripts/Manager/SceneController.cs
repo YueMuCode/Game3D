@@ -21,7 +21,7 @@ public class SceneController : SingleT<SceneController>
                 break;
             case TransitionPoint.TransitionType.DifferentScene://如果是跨场景传送
                 //Debug.Log(2);
-                SaveManager.Instance.SavePlayerData();//传送到下一个场景时保存玩家的基本属性数据
+                
                 Debug.Log("成功保存数据");
                 StartCoroutine( TransitionDifferentScene(transitionPoint.sceneName, transitionPoint.destinationTag));
                 Debug.Log(2);
@@ -45,6 +45,7 @@ public class SceneController : SingleT<SceneController>
     }
     IEnumerator TransitionDifferentScene(string sceneName, TransitionDestination.DestinationTag destinationtag)
     {
+        SaveManager.Instance.SavePlayerData();//传送到下一个场景时保存玩家的基本属性数据
         yield return SceneManager.LoadSceneAsync(sceneName);//加载场景
         if(FindObjectOfType<PlayerController>())//方便调试用
         {

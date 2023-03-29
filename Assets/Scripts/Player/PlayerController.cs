@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public CharacterStats characterStats;
     public bool isDead;
     public bool isCritical;//是否暴击
-
+    public bool isAttack;//是否正在攻击
     //更新UI用的委托
     public event Action<int> UpdatePlayerHealth;//用于更新血条
     void InitPlayerStats()
@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if (isGround && Input.GetButtonDown("Jump")&&isInputBlocked)
         {
             velocity.y = Mathf.Sqrt(jumoHeight * -2 * gravity);
-
             anim.SetTrigger("Jump");
         }
         if(isGround)
@@ -140,15 +139,17 @@ public class PlayerController : MonoBehaviour,IDamageTable
             || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack")|| anim.GetCurrentAnimatorStateInfo(1).IsName("Dizzy"))
         {           
             isInputBlocked = false;
+            isAttack = true;
         }
         else
         {
             isInputBlocked = true;
+            isAttack = false;
         }
         anim.SetBool("Dead", isDead);
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-          //  Debug.Log("按下了鼠标左键");
+            //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");
             isCritical = UnityEngine.Random.value <= characterStats.criticalChance;
             UpdatePlayerHealth?.Invoke(1);
@@ -189,4 +190,22 @@ public class PlayerController : MonoBehaviour,IDamageTable
         UpdatePlayerHealth?.Invoke(1);
     }
     #endregion
+
+    //攻击的判定
+    public void StartAttackCheck()
+    {
+        if(FindObjectOfType<WeaponHitPoint>())
+        {
+            FindObjectOfType<WeaponHitPoint>().GetComponent<BoxCollider>().enabled = true;
+        }
+       
+    }
+    public void EndAttackCheck()
+    {
+       
+        if (FindObjectOfType<WeaponHitPoint>())
+        {
+            FindObjectOfType<WeaponHitPoint>().GetComponent<BoxCollider>().enabled = false;
+        }
+    }
 }
