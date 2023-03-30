@@ -63,4 +63,51 @@ public class InventotyManager : SingleT<InventotyManager>
             }
         }
     }
+
+
+
+
+    #region 检查鼠标放下时此时鼠标的坐标是否位于某个SlotImage(背包、物品栏、人物面板都包括)的RectTransform内
+    public bool CheckSlotRectTransformInInventory(Vector3 mousePosition)//检测背包那就是背包的container
+    {
+        for(int i=0;i<bagContainer.slotHolders.Length;i++)
+        {
+            RectTransform t = bagContainer.slotHolders[i].transform as RectTransform;//.GetComponent<RectTransform>();
+            if(RectTransformUtility.RectangleContainsScreenPoint(t,mousePosition))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public bool CheckSlotRectTransformInAction(Vector3 mousePosition)//检测物品栏就是物品栏的container
+    {
+        for (int i = 0; i < actionContainer.slotHolders.Length; i++)
+        {
+            RectTransform t = actionContainer.slotHolders[i].transform as RectTransform;
+            if (RectTransformUtility.RectangleContainsScreenPoint(t, mousePosition))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    public bool CheckSlotRectTransformInEquipment(Vector3 mousePosition)//检测人物面板就是人物面板的container
+    {
+        for (int i = 0; i < equipmentContainer.slotHolders.Length; i++)
+        {
+            RectTransform t = equipmentContainer.slotHolders[i].transform as RectTransform;//.GetComponent<RectTransform>();
+            if (RectTransformUtility.RectangleContainsScreenPoint(t, mousePosition))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    #endregion
 }

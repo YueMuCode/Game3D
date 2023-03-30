@@ -13,36 +13,36 @@ MonoBehaviour:
   m_Name: InventoryBag
   m_EditorClassIdentifier: 
   listOfItems:
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
   - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
     amount: 1
   - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
     amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
-  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 1
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
+  - itemData: {fileID: 0}
+    amount: 0
   - itemData: {fileID: 0}
     amount: 0
   - itemData: {fileID: 0}
