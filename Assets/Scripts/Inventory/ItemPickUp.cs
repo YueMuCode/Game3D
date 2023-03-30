@@ -26,6 +26,8 @@ public class ItemPickUp : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.E)&&canPickUp)
         {
             Destroy(gameObject);
+            InventotyManager.Instance.AddItemToInventory(itemData_SO,itemData_SO.itemAmount);
+            InventotyManager.Instance.bagContainer.UpdateEverySlotItemUI();//捡起物品的时候也更新一下
             GameManager.Instance.playerStats.GetComponent<UseOrEquipItem>().EquipWeapon(itemData_SO);
         }
 
