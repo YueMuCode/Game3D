@@ -4,17 +4,37 @@ using UnityEngine;
 
 public class InventotyManager : SingleT<InventotyManager>
 {
-    public InventoryData_SO inventoryData_SO;
 
+    public class DragTempData
+    {
+        public SlotHolder originalSlotHolderData;
+        public RectTransform originalParent;
+    }
+
+
+
+
+    public InventoryData_SO inventoryData_SO;
+    public InventoryData_SO actionData_SO;
+    public InventoryData_SO equipmentData_SO;
 
 
 
     [Header("Container")]
     public Container bagContainer;
+    public Container actionContainer;
+    public Container equipmentContainer;
 
+
+    [Header("DragTempCanvas")]
+    public Canvas dragCanvas;
+
+    public DragTempData currentDragData;
     private void Start()
     {
         bagContainer.UpdateEverySlotItemUI();//一开始时就把数据库和ui列表连接一下
+        actionContainer.UpdateEverySlotItemUI();
+        equipmentContainer.UpdateEverySlotItemUI();
     }
 
     public void AddItemToInventory(ItemData_SO newItem,int amountOfItem)
@@ -33,11 +53,11 @@ public class InventotyManager : SingleT<InventotyManager>
         }
         for(int i=0;i<inventoryData_SO.listOfItems.Count;i++)
         {
-            Debug.Log("执行到了");
+           // Debug.Log("执行到了");
             if(inventoryData_SO.listOfItems[i].itemData==null&&!inventoryData_SO.isFound)//这个格子的数据为空就添加
             {
                 inventoryData_SO.listOfItems[i].itemData = newItem;
-                Debug.Log("内部");
+               // Debug.Log("内部");
                 inventoryData_SO.listOfItems[i].amount = amountOfItem;
                 break;//找到的第一个空白格子添加
             }

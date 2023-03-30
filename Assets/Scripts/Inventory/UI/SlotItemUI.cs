@@ -29,7 +29,7 @@ public class SlotItemUI : MonoBehaviour
             itemImage.sprite = item.itemIcon;
             itemAmount.text = amount.ToString("00");
             itemImage.gameObject.SetActive(true);
-            Debug.Log("Ë¢ÐÂUI");
+            //Debug.Log("Ë¢ÐÂUI");
         }
         else
         {

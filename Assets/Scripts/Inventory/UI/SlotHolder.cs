@@ -14,7 +14,7 @@ public class SlotHolder : MonoBehaviour
         {
             case SlotType.BAG:
                 slotItemUI.inventoryData_SO = InventotyManager.Instance.inventoryData_SO;//让slotItemUI里面的背包数据连接到我门创建好的数据库中
-                Debug.Log("BagType");
+               // Debug.Log("BagType");
                 break;
             case SlotType.WEAPON:
 
@@ -30,7 +30,7 @@ public class SlotHolder : MonoBehaviour
         {
             var item = slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index];//从创建好的数据库中拿到UI表里面对应位置的物品
             slotItemUI.SetActiveItemUI(item.itemData, item.amount);
-            Debug.Log("Senddata");
+            //Debug.Log("Senddata");
         }
     }
 

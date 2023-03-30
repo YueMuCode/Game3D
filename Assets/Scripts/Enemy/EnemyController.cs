@@ -213,7 +213,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         {
             isFollow = false;
             agent.isStopped = true;
-            Debug.Log("停下！");
+            //Debug.Log("停下！");
             agent.velocity = Vector3.zero;//防止速度过高的时候进行攻击的时候会滑动！
             if (lastAttackTime<=0)
             {
@@ -258,7 +258,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
             
             anim.SetTrigger("Attack");//攻击不能用状态来实现
             skill = false;
-            Debug.Log("执行一次攻击");
+           // Debug.Log("执行一次攻击");
         }
        else  if (TargetInSkillRange())
         {

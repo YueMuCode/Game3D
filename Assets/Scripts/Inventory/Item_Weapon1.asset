@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 1
   itemName: 
-  itemIcon: {fileID: 0}
-  itemAmount: 0
+  itemIcon: {fileID: 21300000, guid: 3763a540d295b09499121423a5550c94, type: 3}
+  itemAmount: 1
   description: 
   stackable: 0
   weaponPrefab: {fileID: 6783374708415137723, guid: 681d1c948814369458cb513548bf24d9, type: 3}

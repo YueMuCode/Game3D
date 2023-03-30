@@ -12,37 +12,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f57573c73ac57314dade7a9bce617f0d, type: 3}
   m_Name: InventoryBag
   m_EditorClassIdentifier: 
-  items:
+  listOfItems:
   - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
-  - itemData: {fileID: 0}
-    amount: 0
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1
   - itemData: {fileID: 0}
     amount: 0
   - itemData: {fileID: 0}

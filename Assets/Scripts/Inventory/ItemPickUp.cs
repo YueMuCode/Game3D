@@ -10,7 +10,7 @@ public class ItemPickUp : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            Debug.Log("玩家准备捡起");
+           // Debug.Log("玩家准备捡起");
             canPickUp = true;
         }
     }
