@@ -59,10 +59,23 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                             SwapItem();
                             break;
                         case SlotType.ACTION:
+                            if(currentSlotHolder.slotItemUI.inventoryData_SO.listOfItems[currentSlotHolder.slotItemUI.Index].itemData.itemType==ItemType.Useable)
+                            {
+                                SwapItem();
+                            }
                             break;
                         case SlotType.WEAPON:
+                            if(currentSlotHolder.slotItemUI.inventoryData_SO.listOfItems[currentSlotHolder.slotItemUI.Index].itemData.itemType == ItemType.Weapon)
+                            {
+                                SwapItem();
+                                
+                            }
                             break;
                         case SlotType.ARMOR:
+                            if (currentSlotHolder.slotItemUI.inventoryData_SO.listOfItems[currentSlotHolder.slotItemUI.Index].itemData.itemType == ItemType.Armor)
+                            {
+                                SwapItem();
+                            }
                             break;
                            
                     }
@@ -78,7 +91,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
             //将背包里面的物品丢弃到世界中
         }
         //如果没被丢弃
-        transform.SetParent(InventotyManager.Instance.currentDragData.originalParent);
+        transform.SetParent(InventotyManager.Instance.currentDragData.originalParent);//拖拽的过程中为了让ui显示在最上层，换了他的父级，现在换回来
         RectTransform t = transform as RectTransform;
         t.offsetMax = -Vector2.one * 10;//因为方格在拖拽的过程中，并没有更新过方格的UI逻辑，所以实际上我们只是把这个方格放到别的方格上放一下，然后让这个方格回到原地，两个方法的数据就交换了，交换了数据就刷新，显示的UI就变了
         t.offsetMin = Vector2.one * 10;

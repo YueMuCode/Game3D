@@ -17,17 +17,24 @@ public class SlotHolder : MonoBehaviour
                // Debug.Log("BagType");
                 break;
             case SlotType.WEAPON:
-
+                slotItemUI.inventoryData_SO = InventotyManager.Instance.equipmentData_SO;
+                if(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData!=null)
+                {
+                    GameManager.Instance.playerStats.transform.GetComponent<UseOrEquipItem>().EquipWeapon(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData);
+                }else
+                {
+                    GameManager.Instance.playerStats.transform.GetComponent<UseOrEquipItem>().UnEquipWeapon(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData);
+                }
                 break;
             case SlotType.ARMOR:
 
                 break;
             case SlotType.ACTION:
-
+                slotItemUI.inventoryData_SO = InventotyManager.Instance.actionData_SO;
                 break;
         }
         if(slotItemUI.inventoryData_SO)
-        {
+        { 
             var item = slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index];//从创建好的数据库中拿到UI表里面对应位置的物品
             slotItemUI.SetActiveItemUI(item.itemData, item.amount);
             //Debug.Log("Senddata");

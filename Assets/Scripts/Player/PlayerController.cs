@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour,IDamageTable
 {
     
@@ -147,7 +148,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
             isAttack = false;
         }
         anim.SetBool("Dead", isDead);
-        if(Input.GetKeyDown(KeyCode.Mouse0))
+        if(Input.GetKeyDown(KeyCode.Mouse0)&&!InteractWithUI())
         {
             //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");
@@ -207,5 +208,13 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
             FindObjectOfType<WeaponHitPoint>().GetComponent<BoxCollider>().enabled = false;
         }
+    }
+    bool InteractWithUI()//是否正在和UI互动，防止点击UI的时候进行攻击
+    {
+        if(EventSystem.current!=null&&EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 6805573608874477607}
   m_Layer: 7
   m_Name: Sword_2
-  m_TagString: Untagged
+  m_TagString: weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
