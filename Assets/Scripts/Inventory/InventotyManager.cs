@@ -11,6 +11,9 @@ public class InventotyManager : SingleT<InventotyManager>
         public RectTransform originalParent;
     }
 
+    public InventoryData_SO templateBag;
+    public InventoryData_SO templateAction;
+    public InventoryData_SO templateEquipment;
 
 
 
@@ -43,11 +46,38 @@ public class InventotyManager : SingleT<InventotyManager>
     public Text criticalDamage;
 
     public ItemToolTip itemToolTip;
+    void InitInventory()
+    {
+        if (templateBag != null)
+        {
+            if (inventoryData_SO == null)
+            {
+                inventoryData_SO = Instantiate(templateBag);
+            }
+        }
+        if (templateAction != null)
+        {
+            if (actionData_SO == null)
+            {
+                actionData_SO = Instantiate(templateAction);
+            }
+        }
+        if (templateEquipment != null)
+        {
+            if (equipmentData_SO == null)
+            {
+                equipmentData_SO = Instantiate(templateEquipment);
+            }
+        }
+
+    }
     private void Start()
     {
+        InitInventory();
         bagContainer.UpdateEverySlotItemUI();//一开始时就把数据库和ui列表连接一下
         actionContainer.UpdateEverySlotItemUI();
         equipmentContainer.UpdateEverySlotItemUI();
+
     }
 
     public void AddItemToInventory(ItemData_SO newItem,int amountOfItem)
