@@ -193,22 +193,67 @@ public class PlayerController : MonoBehaviour,IDamageTable
     #endregion
 
     //攻击的判定
-    public void StartAttackCheck()
+    #region 伤害的判断因为
+    public void StartAttackCheckLeftHand()
     {
-        if(FindObjectOfType<WeaponHitPoint>())
+        if(FindObjectOfType<LHandHitPoint>())
         {
-            FindObjectOfType<WeaponHitPoint>().GetComponent<BoxCollider>().enabled = true;
+            FindObjectOfType<LHandHitPoint>().GetComponent<BoxCollider>().enabled = true;
+          
         }
        
     }
-    public void EndAttackCheck()
+    public void EndAttackCheckLeftHand()
     {
        
+        if (FindObjectOfType<LHandHitPoint>())
+        {
+            FindObjectOfType<LHandHitPoint>().GetComponent<BoxCollider>().enabled = false;
+           
+        }
+    }
+
+    public void StartAttackCheckRightHand()
+    {
+        if (FindObjectOfType<RHandHitPoint>())
+        {
+            FindObjectOfType<RHandHitPoint>().GetComponent<BoxCollider>().enabled = true;
+
+        }
+    }
+    public void EndAttackCheckRightHand()
+    {
+
+        if (FindObjectOfType<RHandHitPoint>())
+        {
+            FindObjectOfType<RHandHitPoint>().GetComponent<BoxCollider>().enabled = false;
+
+        }
+    }
+
+
+    public void StartAttackCheckWeaponRightHand()
+    {
+        if (FindObjectOfType<WeaponHitPoint>())
+        {
+            FindObjectOfType<WeaponHitPoint>().GetComponent<BoxCollider>().enabled = true;
+
+        }
+
+    }
+    public void EndAttackCheckWeaponRightHand()
+    {
+
         if (FindObjectOfType<WeaponHitPoint>())
         {
             FindObjectOfType<WeaponHitPoint>().GetComponent<BoxCollider>().enabled = false;
+
         }
     }
+    #endregion
+
+
+
     bool InteractWithUI()//是否正在和UI互动，防止点击UI的时候进行攻击
     {
         if(EventSystem.current!=null&&EventSystem.current.IsPointerOverGameObject())
@@ -217,4 +262,5 @@ public class PlayerController : MonoBehaviour,IDamageTable
         }
         return false;
     }
+  
 }

@@ -1,5 +1,112 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &925743993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 925743994}
+  - component: {fileID: 925743997}
+  - component: {fileID: 925743995}
+  m_Layer: 7
+  m_Name: Camera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &925743994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925743993}
+  m_LocalRotation: {x: -0.0005670049, y: -0.99910194, z: 0.039921764, w: -0.014190147}
+  m_LocalPosition: {x: -0.049, y: 0.96, z: 1.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8263058341625771190}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 4.576, y: -181.627, z: 0}
+--- !u!20 &925743997
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925743993}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 128
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 8400000, guid: 0bbc52b1080d4ff4a9bf7eeeb94402af, type: 2}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &925743995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925743993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &8260025465001717136
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +510,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8264926536920857988}
+  - component: {fileID: 2500694160296908783}
+  - component: {fileID: 1815849347415509933}
   m_Layer: 7
   m_Name: Character L Hand
   m_TagString: Untagged
@@ -430,6 +539,31 @@ Transform:
   m_Father: {fileID: 8263494735080180988}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2500694160296908783
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260161990355231846}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.37534216, y: 0.19511802, z: 0.18485238}
+  m_Center: {x: -0.0043929727, y: -0.003019174, z: 0.009474686}
+--- !u!114 &1815849347415509933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8260161990355231846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18f9a97f545067246b8cb9899016d570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8260163797035171356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1030,6 +1164,7 @@ Transform:
   - {fileID: 8263365861597409502}
   - {fileID: 8264906677796045072}
   - {fileID: 9039268348532249065}
+  - {fileID: 925743994}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1043,7 +1178,7 @@ Animator:
   m_GameObject: {fileID: 8260872769828660860}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d4bc8aeee1248da43a4176631929bc9d, type: 3}
-  m_Controller: {fileID: 9100000, guid: ce3a24f9bf843c249abe57123e9a86e6, type: 2}
+  m_Controller: {fileID: 22100000, guid: 28220c3b98a3a6c43973653b6deba315, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1187,7 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6405905eeb83f1e4ebdc5aa5b8766e81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentOfWeapon: {fileID: 0}
+  parentOfWeapon: {fileID: 8263273344460549794}
 --- !u!1 &8260876149746701724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1976,6 +2111,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8263273344460549794}
+  - component: {fileID: 5988886041460532776}
+  - component: {fileID: 3527915987114994701}
   m_Layer: 7
   m_Name: Character R Hand
   m_TagString: Untagged
@@ -2003,6 +2140,31 @@ Transform:
   m_Father: {fileID: 8265144945204532888}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5988886041460532776
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261345905274651634}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 0.40923813, y: 0.18627205, z: 0.1432245}
+  m_Center: {x: 0.011197795, y: -0.010478543, z: -0.0050418214}
+--- !u!114 &3527915987114994701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261345905274651634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb52a692f9a2d72489a61630c04c1575, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8261356184662859924
 GameObject:
   m_ObjectHideFlags: 0

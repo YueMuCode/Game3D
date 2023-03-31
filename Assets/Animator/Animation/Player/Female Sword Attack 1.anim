@@ -42469,14 +42469,14 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.23333333
-    functionName: StartAttackCheck
+    functionName: StartAttackCheckLeftHand
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.5
-    functionName: EndAttackCheck
+    functionName: EndAttackCheckLeftHand
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

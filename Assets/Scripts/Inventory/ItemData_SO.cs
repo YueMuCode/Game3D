@@ -17,6 +17,7 @@ public class ItemData_SO : ScriptableObject
     [Header("Weapon")]
     public GameObject weaponPrefab;//物品的预制体
     public AttackData_SO weaponAttackData;//这把武器的攻击数据
+    public AnimatorOverrideController weaponOverrideAnimator;//这把武器的动作系统
     [Header("Useable")]
     public UseableItemData_SO useableItemData;
 }
