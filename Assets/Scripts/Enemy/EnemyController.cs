@@ -307,10 +307,19 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     {
         
     }
-    //void OnDisable()
-    //{
-    //    GameManager.Instance.RemoveObserver(this);
-    //}
+    void OnDisable()
+    {
+        if (!GameManager.IsInitialized) return;
+        GameManager.Instance.RemoveObserver(this);
+        if(isDead)
+        {
+            GetComponent<DropLoot>().BeginCheckIsDrpoItem();
+            Debug.Log("执行了");
+        }
+       
+    }
+
+
     public void EndNotify()//IEndGameObsetver观察者模式
     {
         //获胜

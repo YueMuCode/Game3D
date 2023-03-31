@@ -41,6 +41,8 @@ public class InventotyManager : SingleT<InventotyManager>
     public Text defend;
     public Text critical;
     public Text criticalDamage;
+
+    public ItemToolTip itemToolTip;
     private void Start()
     {
         bagContainer.UpdateEverySlotItemUI();//一开始时就把数据库和ui列表连接一下

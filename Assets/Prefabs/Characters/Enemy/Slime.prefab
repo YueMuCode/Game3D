@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 1508079175752621702}
   - component: {fileID: 1508079175752621703}
   - component: {fileID: 1152613111}
+  - component: {fileID: 5541565987816017918}
   m_Layer: 0
   m_Name: Slime
   m_TagString: Enemy
@@ -581,6 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5699bc2bb7b3f0748b88bb6c67efdc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData_so: {fileID: 0}
   tempplateCharacterData_so: {fileID: 11400000, guid: 8e7802729d850994e8b73bf308798c7e, type: 2}
   attackData_SO: {fileID: 11400000, guid: 6366c41713c531042a0aec1ba97ad54e, type: 2}
 --- !u!54 &1508079175752621702
@@ -629,6 +631,23 @@ MonoBehaviour:
   barPoint: {fileID: 5085396988189982220}
   alwaysVisible: 0
   visibleTime: 4
+--- !u!114 &5541565987816017918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3978214445928896300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c19840422e668d488ab082cf9f70aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mayDropItemArrs:
+  - itemPrefabs: {fileID: 6071658325815477495, guid: e2470b9b4c64ea4499c8fa30efadcee9, type: 3}
+    randomValue: 0.91
+  - itemPrefabs: {fileID: 9170061149981563140, guid: 6471dd1528b233d4eb0b24c3e4892d74, type: 3}
+    randomValue: 0.05
 --- !u!1 &7941117300471635198
 GameObject:
   m_ObjectHideFlags: 0

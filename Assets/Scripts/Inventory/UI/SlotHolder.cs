@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 public enum SlotType { BAG,WEAPON,ARMOR,ACTION}//这个slothoder里面的物品的类型是背包的还是物品栏，方便后期
-public class SlotHolder : MonoBehaviour, IPointerClickHandler
+public class SlotHolder : MonoBehaviour, IPointerClickHandler,IPointerEnterHandler,IPointerExitHandler
 {
     public SlotType InventoryType;
     public SlotItemUI slotItemUI;
@@ -49,6 +49,23 @@ public class SlotHolder : MonoBehaviour, IPointerClickHandler
             UseItem();
         }
     }
+    public void OnPointerEnter(PointerEventData eventData)//当鼠标悬浮在当前格子上的时候
+    {
+        if(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData!=null)
+        {
+            InventotyManager.Instance.itemToolTip.SetItemText(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData);
+            InventotyManager.Instance.itemToolTip.gameObject.SetActive(true);
+        }
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        InventotyManager.Instance.itemToolTip.gameObject.SetActive(false) ;
+    }
+    private void OnDisable()
+    {
+        InventotyManager.Instance.itemToolTip.gameObject.SetActive(false);//背包关闭，方格也就跟着关闭，那么显示的信息也要跟着关闭
+    }
+
     public void UseItem()
     {
         if(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].amount>0&& slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData.itemType==ItemType.Useable)//物品在数据库中的总数量大于0.类型是可以使用的
@@ -59,4 +76,6 @@ public class SlotHolder : MonoBehaviour, IPointerClickHandler
         //用完后要刷新新的数据给ui
         SendDataToSlotItemUI();
     }
+
+  
 }
