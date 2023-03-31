@@ -7,6 +7,12 @@ TagManager:
   - Enemy
   - Ground
   - FootMan
+  - weapon
+  - Slot
+  - Hotbar
+  - Slots
+  - DraggingItem
+  - EquipmentSystem
   layers:
   - Default
   - TransparentFX

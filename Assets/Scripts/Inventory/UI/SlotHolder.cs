@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public enum SlotType { BAG,WEAPON,ARMOR,ACTION}//这个slothoder里面的物品的类型是背包的还是物品栏，方便后期
-public class SlotHolder : MonoBehaviour
+public class SlotHolder : MonoBehaviour, IPointerClickHandler
 {
     public SlotType InventoryType;
     public SlotItemUI slotItemUI;
 
+   
     public void SendDataToSlotItemUI()
     {
         switch(InventoryType)
@@ -37,9 +38,25 @@ public class SlotHolder : MonoBehaviour
         { 
             var item = slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index];//从创建好的数据库中拿到UI表里面对应位置的物品
             slotItemUI.SetActiveItemUI(item.itemData, item.amount);
-            //Debug.Log("Senddata");
+           // Debug.Log("Senddata");
         }
     }
 
-
+    public void OnPointerClick(PointerEventData eventData)
+    {
+       if(eventData.clickCount%2==0)//判断鼠标双击
+        {
+            UseItem();
+        }
+    }
+    public void UseItem()
+    {
+        if(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].amount>0&& slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData.itemType==ItemType.Useable)//物品在数据库中的总数量大于0.类型是可以使用的
+        {
+            GameManager.Instance.playerStats.GetComponent<UseOrEquipItem>().UseItem(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData);
+            slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].amount -= 1;
+        }
+        //用完后要刷新新的数据给ui
+        SendDataToSlotItemUI();
+    }
 }

@@ -21,7 +21,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         InventotyManager.Instance.currentDragData = new InventotyManager.DragTempData();//每次拖拽都重新生成一个新的对象存储
         InventotyManager.Instance.currentDragData.originalSlotHolderData = GetComponentInParent<SlotHolder>();
         InventotyManager.Instance.currentDragData.originalParent = transform.parent.GetComponent<RectTransform>();// ((RectTransform)transform.parent; GetComponentInParent<RectTransform>() //
-        Debug.Log(InventotyManager.Instance.currentDragData.originalParent);
+       // Debug.Log(InventotyManager.Instance.currentDragData.originalParent);
 
         //记录这个物品的最开始的信息
         transform.SetParent(InventotyManager.Instance.dragCanvas.transform, true);
@@ -111,7 +111,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
         {
             currentSlotHolder.slotItemUI.inventoryData_SO.listOfItems[currentSlotHolder.slotItemUI.Index] = targetItem;
             targetSlotHolder.slotItemUI.inventoryData_SO.listOfItems[targetSlotHolder.slotItemUI.Index] = tempItem;
-            Debug.Log(1);
+           // Debug.Log(1);
         }
     }
 

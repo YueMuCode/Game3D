@@ -28,6 +28,7 @@ public class ItemPickUp : MonoBehaviour
             Destroy(gameObject);
             InventotyManager.Instance.AddItemToInventory(itemData_SO,itemData_SO.itemAmount);
             InventotyManager.Instance.bagContainer.UpdateEverySlotItemUI();//捡起物品的时候也更新一下
+            //Debug.Log("开始捡起");
             //GameManager.Instance.playerStats.GetComponent<UseOrEquipItem>().EquipWeapon(itemData_SO);
         }
 

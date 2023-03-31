@@ -13,18 +13,19 @@ public class SlotItemUI : MonoBehaviour
 
     public void SetActiveItemUI(ItemData_SO item,int amount)
     {
-        //if(amount==0)
-        //{
-        //    inventoryData_SO.listOfItems[Index].itemData = null;
-        //    inventoryData_SO.listOfItems[Index].amount = 0;
-        //    itemImage.gameObject.SetActive(false);
-        //    return;
-        //}
-        //if(amount<0)
-        //{
-        //    item = null;
-        //}
-        if(item!=null)
+        if (amount == 0)
+        {
+            inventoryData_SO.listOfItems[Index].itemData = null;
+            inventoryData_SO.listOfItems[Index].amount = 0;
+            itemImage.gameObject.SetActive(false);
+            return;
+        }
+        if (amount < 0)
+        {
+            item = null;
+        }
+
+        if (item!=null)
         {
             itemImage.sprite = item.itemIcon;
             itemAmount.text = amount.ToString("00");

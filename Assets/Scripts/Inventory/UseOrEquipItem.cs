@@ -25,4 +25,16 @@ public class UseOrEquipItem : MonoBehaviour
         }
         //更新人物的攻击数据
     }
+
+    public void UseItem(ItemData_SO item)
+    {
+        if(GameManager.Instance.playerStats.currentHealth+item.useableItemData.health>GameManager.Instance.playerStats.maxHealth)
+        {
+            GameManager.Instance.playerStats.currentHealth = GameManager.Instance.playerStats.maxHealth;
+        }else
+        {
+            GameManager.Instance.playerStats.currentHealth += item.useableItemData.health;
+        }
+
+    }
 }
