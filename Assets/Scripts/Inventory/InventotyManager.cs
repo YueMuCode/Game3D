@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class InventotyManager : SingleT<InventotyManager>
 {
 
@@ -37,6 +37,10 @@ public class InventotyManager : SingleT<InventotyManager>
     public GameObject CharacterPanelPrefabs;
     private bool bagisOpen = false;
     private bool StatsisOpen = false;
+    public Text attack;
+    public Text defend;
+    public Text critical;
+    public Text criticalDamage;
     private void Start()
     {
         bagContainer.UpdateEverySlotItemUI();//一开始时就把数据库和ui列表连接一下
@@ -124,6 +128,7 @@ public class InventotyManager : SingleT<InventotyManager>
     private void Update()
     {
         ClosePanel();
+        UpdateCharacterStatsUI();//偷懒直接在update里面更新ui
     }
 
     //关闭或者打开面板
@@ -139,5 +144,13 @@ public class InventotyManager : SingleT<InventotyManager>
             StatsisOpen = !StatsisOpen;
             CharacterPanelPrefabs.gameObject.SetActive(StatsisOpen);
         }
+    }
+    
+    public void UpdateCharacterStatsUI()
+    {
+        attack.text = GameManager.Instance.playerStats.maxDamage.ToString("00");
+        defend.text = GameManager.Instance.playerStats.maxDefend.ToString("00");
+        critical.text = GameManager.Instance.playerStats.criticalChance.ToString("00");
+        criticalDamage.text = GameManager.Instance.playerStats.criticalMultiplier.ToString("00");
     }
 }
