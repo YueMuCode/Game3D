@@ -13,6 +13,7 @@ TagManager:
   - Slots
   - DraggingItem
   - EquipmentSystem
+  - NPC
   layers:
   - Default
   - TransparentFX

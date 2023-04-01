@@ -12,4 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def0447ba7aa0cb45b5f9a0bd64a7c75, type: 3}
   m_Name: new talk
   m_EditorClassIdentifier: 
-  dialoguePieces: []
+  dialoguePieces:
+  - thisPieceID: piece01
+    speakerImage: {fileID: 0}
+    text: "\u7B2C\u4E00\u53E5\u8BDD"
+    optionsOfthisPiece: []
+  - thisPieceID: piece02
+    speakerImage: {fileID: 0}
+    text: "\u7B2C\u4E8C\u53E5\u8BDD"
+    optionsOfthisPiece: []
+  - thisPieceID: piece03
+    speakerImage: {fileID: 0}
+    text: "\u7B2C\u4E09\u53E5\u8BDD"
+    optionsOfthisPiece: []
