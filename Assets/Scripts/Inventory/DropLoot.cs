@@ -19,7 +19,11 @@ public class DropLoot : MonoBehaviour
         {
             if(value<=mayDropItemArrs[i].randomValue)
             {
-                Instantiate(mayDropItemArrs[i].itemPrefabs, transform.position + Vector3.up * 2,Quaternion.identity);
+                if(mayDropItemArrs[i].itemPrefabs!=null)
+                {
+                    Instantiate(mayDropItemArrs[i].itemPrefabs, transform.position + Vector3.up * 2, Quaternion.identity);
+                }
+                
 
             }
         }
