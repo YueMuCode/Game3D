@@ -29,6 +29,7 @@ public class DialogueContoller : MonoBehaviour
         if (canTalk && Input.GetKeyDown(KeyCode.E))//按下鼠标R按键
         {
             OpenDialogue();
+            //Debug.Log("按下了E建");
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DialogueData_so : ScriptableObject
 {
     public  List<DialoguePiece> dialoguePieces = new List<DialoguePiece>();//这段对话总共有多少哥语句
-    //public Dictionary<string, DialoguePiece> dialogueIndex = new Dictionary<string, DialoguePiece>();//ID对应着内容
+                                                                           //public Dictionary<string, DialoguePiece> dialogueIndex = new Dictionary<string, DialoguePiece>();//ID对应着内容
 
     //private void OnValidate()
     //{
@@ -18,5 +18,18 @@ public class DialogueData_so : ScriptableObject
     //        }
     //    }
     //}
+    public QuestData_SO GetQuest()
+    {
+        QuestData_SO currentQuest = null;
+        foreach (var piece in dialoguePieces)
+        {
+            if (piece.questdata != null)
+            {
+                currentQuest = piece.questdata;
+            }
+        }
+        return currentQuest;
+    }
+  
 
 }

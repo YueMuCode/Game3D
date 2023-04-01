@@ -316,7 +316,11 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
             GetComponent<DropLoot>().BeginCheckIsDrpoItem();
             Debug.Log("执行了");
         }
-       
+        if (QuestManager.IsInitialized && isDead)//死亡就检测进度
+        {
+            QuestManager.Instance.UpdateQuestProgress(this.name, 1);
+        }
+
     }
 
 

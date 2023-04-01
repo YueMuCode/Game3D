@@ -72,6 +72,7 @@ public class SlotHolder : MonoBehaviour, IPointerClickHandler,IPointerEnterHandl
         {
             GameManager.Instance.playerStats.GetComponent<UseOrEquipItem>().UseItem(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData);
             slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].amount -= 1;
+            QuestManager.Instance.UpdateQuestProgress(slotItemUI.inventoryData_SO.listOfItems[slotItemUI.Index].itemData.itemName, -1);//将对应的物品使用过后会-1；
         }
         //用完后要刷新新的数据给ui
         SendDataToSlotItemUI();

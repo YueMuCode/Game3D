@@ -43,13 +43,13 @@ public class SaveManager : SingleT<SaveManager>
 
 
 
-    void SaveCurrentData(string keyName, Object data)//将data理解一个已经实列化的对象，其实就是CharacterData_SO里面创造号的玩家的数据，将玩家的数据用key来标识保存到硬盘里面（本来一个对象的数据应该是在堆栈区）
+   public  void SaveCurrentData(string keyName, Object data)//将data理解一个已经实列化的对象，其实就是CharacterData_SO里面创造号的玩家的数据，将玩家的数据用key来标识保存到硬盘里面（本来一个对象的数据应该是在堆栈区）
     {
         var jsonData = JsonUtility.ToJson(data, true);
         PlayerPrefs.SetString(keyName, jsonData);
         PlayerPrefs.Save();
     }
-    void LoadData( string keyName, Object data)
+  public   void LoadData( string keyName, Object data)
     {
         if(PlayerPrefs.HasKey(keyName))
         {

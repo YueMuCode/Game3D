@@ -9,7 +9,7 @@ public class DialoguePiece
 
     [TextArea]
     public string text;//说话的内容
-
+    public QuestData_SO questdata;
     public List<DialogueOptions> optionsOfthisPiece = new List<DialogueOptions>();
 
 }

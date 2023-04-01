@@ -185,4 +185,44 @@ public class InventotyManager : SingleT<InventotyManager>
         critical.text = GameManager.Instance.playerStats.criticalChance.ToString("00");
         criticalDamage.text = GameManager.Instance.playerStats.criticalMultiplier.ToString("00");
     }
+
+    #region 检测任务物品
+    public void CheckQuestItemInBag(string questItemName)
+    {
+        foreach (var item in inventoryData_SO.listOfItems)
+        {
+            if (item.itemData != null)
+            {
+                if (item.itemData.itemName == questItemName)
+                {
+                    QuestManager.Instance.UpdateQuestProgress(item.itemData.itemName, item.amount);
+                }
+            }
+        }
+        foreach (var item in actionData_SO.listOfItems)
+        {
+            if (item.itemData != null)
+            {
+                if (item.itemData.itemName == questItemName)
+                {
+                    QuestManager.Instance.UpdateQuestProgress(item.itemData.itemName, item.amount);
+                }
+            }
+        }
+
+    }
+
+    #endregion
+
+    //检测背包和快捷栏物品
+    public ItemsInInventory QuestItemInBag(ItemData_SO questItem)
+    {
+        return inventoryData_SO.listOfItems.Find(i => i.itemData == questItem);
+    }
+
+    public ItemsInInventory QuestItemInAction(ItemData_SO questItem)
+    {
+        return actionData_SO.listOfItems.Find(i => i.itemData == questItem);
+    }
+
 }

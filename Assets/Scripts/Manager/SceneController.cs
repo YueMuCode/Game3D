@@ -46,6 +46,7 @@ public class SceneController : SingleT<SceneController>
     IEnumerator TransitionDifferentScene(string sceneName, TransitionDestination.DestinationTag destinationtag)
     {
         SaveManager.Instance.SavePlayerData();//传送到下一个场景时保存玩家的基本属性数据
+        QuestManager.Instance.SaveQuestManager();
         yield return SceneManager.LoadSceneAsync(sceneName);//加载场景
         if(FindObjectOfType<PlayerController>())//方便调试用
         {
@@ -53,6 +54,7 @@ public class SceneController : SingleT<SceneController>
         }
         yield return Instantiate(playerPrefabs, GetDestinationPosition(destinationtag).transform.position, GetDestinationPosition(destinationtag).transform.rotation);//加载完场景后再生成玩家的预制体
         SaveManager.Instance.LoadPlayerData();//在场景加载完、人物生成好之后，把人物的基本属性的数据从硬盘中读到对象里面
+        QuestManager.Instance.LoadQuestManaget();
         Debug.Log("成功加载数据");
         yield break;
     }

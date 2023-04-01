@@ -8,6 +8,7 @@ public class OptionUI : MonoBehaviour
     private Button thisButton;
     private DialoguePiece currentPiece;
     private int nextTargetID;
+    private bool takeQuest;
     private void Awake()
     {
         thisButton = GetComponent<Button>();
@@ -18,9 +19,41 @@ public class OptionUI : MonoBehaviour
         currentPiece = piece;
         optionText.text = option.text;
         nextTargetID = option.targetPieceID;
+        takeQuest = option.isTakeQuest;
     }
     public void OnOptionClicked()
     {
+       if(currentPiece.questdata!=null)
+        {
+            var tasksQuestData = new QuestManager.QuestTask();
+            tasksQuestData.questData = Instantiate(currentPiece.questdata);//类似模板
+
+
+            if (takeQuest)//选择接受了任务
+            {
+                if(QuestManager.Instance.HaveQuest(tasksQuestData.questData))
+                {
+                    //任务已经接受过，检测是否完成
+                    if (QuestManager.Instance.GetTask(tasksQuestData.questData).isComplete)
+                    {
+                        tasksQuestData.questData.GiveRewards(); ;
+                        QuestManager.Instance.GetTask(tasksQuestData.questData).isFinished = true;
+                    }
+                }
+                else//任务还没有接受过，接受
+                {
+                   //为什么不能 tasksQuestData.isStarted=true?
+                    QuestManager.Instance.tasks.Add(tasksQuestData);
+                    QuestManager.Instance.GetTask(tasksQuestData.questData).isStarted = true;//将放进去的任务的状态改变为什么不能直接在前面加
+                    foreach (var requireItem in tasksQuestData.questData.RequireTargetName())//直接查找任务物品是否在背包里面已经有了
+                    {
+                        InventotyManager.Instance.CheckQuestItemInBag(requireItem);
+                    }
+                }
+            }
+        }
+
+
         if(nextTargetID<0)
         {
             DialogueUIController.Instance.dialoguePanelPrefab.SetActive(false);
