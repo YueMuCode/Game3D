@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: def0447ba7aa0cb45b5f9a0bd64a7c75, type: 3}
   m_Name: completeTalk
   m_EditorClassIdentifier: 
-  dialoguePieces: []
+  dialoguePieces:
+  - thisPieceID: 0
+    speakerImage: {fileID: 0}
+    text: "\u592A\u597D\u4E86\uFF0C\u4F60\u90FD\u5B8C\u6210\u4E86\uFF0C\u8FD9\u662F\u5956\u52B1"
+    questdata: {fileID: 11400000, guid: ac1d86e24d1a04e4db9f0b7b5c352ab1, type: 2}
+    optionsOfthisPiece:
+    - targetPieceID: -1
+      text: "\u662F\u7684"
+      isTakeQuest: 1

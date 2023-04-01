@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: def0447ba7aa0cb45b5f9a0bd64a7c75, type: 3}
-  m_Name: new talk
+  m_Name: Starttalk
   m_EditorClassIdentifier: 
   dialoguePieces:
   - thisPieceID: 0
     speakerImage: {fileID: 0}
     text: "\u4F60\u8981\u63A5\u53D7\u4EFB\u52A1\u561B\uFF1F"
-    questdata: {fileID: 11400000, guid: bc7a5c4244ab51541bd99c3ab0ee926c, type: 2}
+    questdata: {fileID: 11400000, guid: ac1d86e24d1a04e4db9f0b7b5c352ab1, type: 2}
     optionsOfthisPiece:
     - targetPieceID: 1
       text: "\u63A5\u53D7"
