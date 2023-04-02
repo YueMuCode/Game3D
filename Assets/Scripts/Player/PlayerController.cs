@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     void Update()
     {
         isDead = characterStats.currentHealth <= 0;
-       
+        updateAttackStats();
         PlayerMove();
         PlayerAnimation();
         if (isDead)
@@ -105,6 +105,11 @@ public class PlayerController : MonoBehaviour,IDamageTable
         }
         
 
+    }
+    void updateAttackStats()
+    {
+        anim.SetFloat("AttackTime", Mathf.Repeat(anim.GetCurrentAnimatorStateInfo(2).normalizedTime, 1f));
+        anim.ResetTrigger("Attack");
     }
     void PlayerAnimation()//目前这个函数触发跑路、跳跃动画，触发跳跃功能
     {
