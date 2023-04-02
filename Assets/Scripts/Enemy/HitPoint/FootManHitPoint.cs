@@ -13,6 +13,7 @@ public class FootManHitPoint : MonoBehaviour
             {
                 Debug.Log("玩家将会收到暴击伤害");
                 // other.GetComponent<PlayerController>().anim.SetTrigger("Hit");
+                //增加防御力的判断
                 other.transform.GetComponent<PlayerController>().GetHit(transform.parent.GetComponent<FootMan>().characterStats.maxDamage *
                  transform.parent.GetComponent<FootMan>().characterStats.criticalMultiplier, transform.parent);
 

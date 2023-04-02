@@ -181,9 +181,9 @@ public class InventotyManager : SingleT<InventotyManager>
     public void UpdateCharacterStatsUI()
     {
         attack.text = GameManager.Instance.playerStats.maxDamage.ToString("00");
-        defend.text = GameManager.Instance.playerStats.maxDefend.ToString("00");
-        critical.text = GameManager.Instance.playerStats.criticalChance.ToString("00");
-        criticalDamage.text = GameManager.Instance.playerStats.criticalMultiplier.ToString("00");
+        defend.text = GameManager.Instance.playerStats.currentDefend.ToString("00");
+        critical.text = GameManager.Instance.playerStats.criticalChance.ToString();
+        criticalDamage.text = GameManager.Instance.playerStats.criticalMultiplier.ToString();
     }
 
     #region 检测任务物品

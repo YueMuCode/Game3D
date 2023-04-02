@@ -311,7 +311,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     {
         if (!GameManager.IsInitialized) return;
         GameManager.Instance.RemoveObserver(this);
-        if(isDead)
+        if(isDead&& GetComponent<DropLoot>()!=null)
         {
             GetComponent<DropLoot>().BeginCheckIsDrpoItem();
             Debug.Log("执行了");
@@ -340,7 +340,8 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     public void GetHit(float damage,Transform attacker)
     {
         //Debug.Log("受到伤害");
-        characterStats.currentHealth -= damage;
+        float realDamage = Mathf.Max(1, damage - damage * (characterStats.currentDefend / 10));
+        characterStats.currentHealth -= realDamage;
         anim.SetBool("Dizzy", attacker.GetComponent<PlayerController>().isCritical);
         anim.SetTrigger("Hit");
         UpdateHealthBarOnAttack?.Invoke(1);
@@ -348,6 +349,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         {
             attacker.GetComponent<PlayerController>().characterStats.currentExp += characterStats.killExp;//怪物死亡将经验添加到玩家身上
            // attacker.GetComponent<PlayerController>().UpdatePlayerHealth?.Invoke(1);事件只能在本类中唤醒
+           
         }
        
     }

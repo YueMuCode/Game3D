@@ -19,6 +19,6 @@ MonoBehaviour:
   description: "\u8FD9\u662F\u4E00\u628A\u65B0\u624B\u5251\uFF0C\n\u653B\u51FB\u529B\u4E3A5.\u5982\u679C\u66B4\u51FB\uFF0C\n\u5C06\u4F1A\u4EA7\u751F\u53EF\u89C2\u7684\u4F24\u5BB3\uFF0C\n\u6CA1\u6709\u8FD9\u628A\u6B66\u5668\uFF0C\u5C06\u96BE\u4EE5\u62B5\u5FA1\u6E38\u8361\u7684\u5F3A\u76D7"
   stackable: 0
   weaponPrefab: {fileID: 6783374708415137723, guid: 681d1c948814369458cb513548bf24d9, type: 3}
-  weaponAttackData: {fileID: 0}
+  weaponAttackData: {fileID: 11400000, guid: b1a60d82bab72a349b78e6b51508e48f, type: 2}
   weaponOverrideAnimator: {fileID: 22100000, guid: 80e6bf2b4f7ea7444aacc723615f8f07, type: 2}
   useableItemData: {fileID: 0}

@@ -46,10 +46,14 @@ public class EnemyHealthBar : MonoBehaviour
     }
     void UpdateHealth(int a)
     {
-        UITransform.gameObject.SetActive(true);
-        timeLeft = visibleTime;
-        UITransform.GetComponent<Slider>().maxValue = enemyStats.characterStats.maxHealth;
-        UITransform.GetComponent<Slider>().value = enemyStats.characterStats.currentHealth;
+        if(UITransform!=null)
+        {
+            UITransform.gameObject.SetActive(true);
+            timeLeft = visibleTime;
+            UITransform.GetComponent<Slider>().maxValue = enemyStats.characterStats.maxHealth;
+            UITransform.GetComponent<Slider>().value = enemyStats.characterStats.currentHealth;
+        }
+        
     }
 
     private void LateUpdate()

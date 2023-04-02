@@ -35,12 +35,12 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public event Action<int> UpdatePlayerHealth;//用于更新血条
     void InitPlayerStats()
     {
-        
+        characterStats.maxHealth = 100;
         characterStats.currentHealth = characterStats.maxHealth;
         characterStats.currentExp = 0;
         characterStats.needExp = 10;
         characterStats.level = 1;
-        characterStats.maxDefend = 3;
+        characterStats.maxDefend = 1;
         characterStats.currentDefend = characterStats.maxDefend;
         cam = Camera.main.transform;
        
@@ -173,9 +173,11 @@ public class PlayerController : MonoBehaviour,IDamageTable
             characterStats.needExp += characterStats.level * 20;
 
             //进行防御、攻击的升级等等
+            characterStats.maxHealth += 50;
+            characterStats.currentDefend += 1;
             characterStats.currentHealth = characterStats.maxHealth;
             characterStats.currentExp -=temp;
-
+            
 
             UpdatePlayerHealth?.Invoke(1);
         }
@@ -184,7 +186,11 @@ public class PlayerController : MonoBehaviour,IDamageTable
     #region 实现的接口
     public void GetHit(float damage,Transform attacker)
     {
-        characterStats.currentHealth -= damage;   
+        float realDamage = Mathf.Max(1, damage - damage * (characterStats.currentDefend / 10));
+
+
+
+        characterStats.currentHealth -= realDamage;   
         if(attacker.GetComponent<EnemyController>().isCritical&& !attacker.GetComponent<EnemyController>().skill)//远程攻击不能暴击
         {
             anim.SetTrigger("Hit");

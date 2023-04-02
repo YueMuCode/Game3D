@@ -19,8 +19,9 @@ public class UseOrEquipItem : MonoBehaviour
             Instantiate(weapon.weaponPrefab, parentOfWeapon);
             GetComponent<Animator>().runtimeAnimatorController = weapon.weaponOverrideAnimator;
         }
-       
-        //将人物的攻击属性加上武器的攻击属性
+
+        //将人物的攻击属性切换成武器的攻击属性
+        GameManager.Instance.playerStats.attackData_SO = weapon.weaponAttackData;
     }
 
     public void UnEquipWeapon(ItemData_SO weapon)
@@ -35,6 +36,8 @@ public class UseOrEquipItem : MonoBehaviour
         }
         GetComponent<Animator>().runtimeAnimatorController = temp;
         //更新人物的攻击数据
+        GameManager.Instance.playerStats.attackData_SO = GameManager.Instance.playerStats.templateAttackData_SO;
+
     }
 
     public void UseItem(ItemData_SO item)

@@ -19,6 +19,6 @@ MonoBehaviour:
   description: "\u8FD9\u662F\u4E00\u628A\u5A01\u529B\u5DE8\u5927\u7684\u53CC\u624B\u6B66\u5668"
   stackable: 0
   weaponPrefab: {fileID: 4062575155027333990, guid: 7f90ed9647385d846b2b9e2453c131e4, type: 3}
-  weaponAttackData: {fileID: 0}
+  weaponAttackData: {fileID: 11400000, guid: 78fd615927541cb408f586de8c6e1362, type: 2}
   weaponOverrideAnimator: {fileID: 22100000, guid: 762614da08b7c0b499e121f42748e537, type: 2}
   useableItemData: {fileID: 0}

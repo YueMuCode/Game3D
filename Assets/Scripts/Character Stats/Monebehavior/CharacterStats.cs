@@ -7,13 +7,32 @@ public class CharacterStats : MonoBehaviour
     public CharacterData_SO characterData_so;//获取 tempplateCharacterData_so生成的值，防止共用同一套数据
     public CharacterData_SO tempplateCharacterData_so;//拖过unity界面拖动获取数据库
     public AttackData_SO attackData_SO;
+    //{
+    //    //get
+    //    //{
+    //    //    if (attackData_SO != null)
+    //    //        return attackData_SO;
+    //    //    else
+    //    //        return null;
+    //    //}
+    //    //set
+    //    //{
+    //    //    attackData_SO = value;
+    //    //}
+    //}
+    public AttackData_SO templateAttackData_SO;
     private void Awake()
     {
         if(tempplateCharacterData_so!=null&&characterData_so==null)
         {
             characterData_so = Instantiate(tempplateCharacterData_so);
         }    
+        if(templateAttackData_SO!=null&&attackData_SO==null)
+        {
+            attackData_SO = Instantiate(templateAttackData_SO);
+        }
     }
+
 
     #region 获取数据库中的人物属性数据
     public float maxHealth

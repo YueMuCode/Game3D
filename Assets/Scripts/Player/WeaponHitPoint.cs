@@ -15,14 +15,14 @@ public class WeaponHitPoint : MonoBehaviour
             {
                // other.transform.GetComponent<EnemyController>().anim.SetTrigger("Dizzy");
               //  other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", true);
-                other.transform.GetComponent<EnemyController>().GetHit(5 * FindObjectOfType<PlayerController>().characterStats.criticalMultiplier, FindObjectOfType<PlayerController>().transform);
+                other.transform.GetComponent<EnemyController>().GetHit(FindObjectOfType<PlayerController>().characterStats.maxDamage * FindObjectOfType<PlayerController>().characterStats.criticalMultiplier, FindObjectOfType<PlayerController>().transform);
                  
                 // anim.SetTrigger("Dizzy");
 
             }
             else
             {
-                other.transform.GetComponent<EnemyController>().GetHit(5, FindObjectOfType<PlayerController>().transform);
+                other.transform.GetComponent<EnemyController>().GetHit(FindObjectOfType<PlayerController>().characterStats.minDamage, FindObjectOfType<PlayerController>().transform);
                // other.transform.GetComponent<EnemyController>().anim.SetBool("Dizzy", false);
             }            
         }

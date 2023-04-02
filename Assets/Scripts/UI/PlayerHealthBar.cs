@@ -8,6 +8,7 @@ public class PlayerHealthBar : MonoBehaviour
     public Transform healthSlider;
     public Transform expSlider;
     public Transform text;
+    public Transform healthText;
     PlayerController player;
     public void Start()
     {
@@ -30,6 +31,7 @@ public class PlayerHealthBar : MonoBehaviour
             healthSlider = canvas.GetChild(0);
             expSlider = canvas.GetChild(1);
             text = canvas.GetChild(2);
+            healthText = canvas.GetChild(3);
          //   healthSlider.GetComponent<Slider>().maxValue = player.characterStats.maxHealth;
 
 
@@ -42,6 +44,7 @@ public class PlayerHealthBar : MonoBehaviour
         GetComponent<PlayerController>().UpdatePlayerHealth += UpdatePlayerHealthUI;
         GetComponent<PlayerController>().UpdatePlayerHealth += UpdatePlayerExpUI;
         GetComponent<PlayerController>().UpdatePlayerHealth += UpdateLevelTextUI;
+        GetComponent<PlayerController>().UpdatePlayerHealth += UpdateHealthTextUI;
     }
 
     void UpdatePlayerHealthUI(int a)
@@ -58,6 +61,10 @@ public class PlayerHealthBar : MonoBehaviour
     void UpdateLevelTextUI(int a)
     {
         text.GetComponent<Text>().text = "LV" + player.characterStats.level.ToString("00");
+    }
+    void UpdateHealthTextUI(int a)
+    {
+        healthText.GetComponent<Text>().text = GetComponent<PlayerController>().characterStats.currentHealth.ToString("00") + "/" + GetComponent<PlayerController>().characterStats.maxHealth.ToString("00");
     }
 
 }
