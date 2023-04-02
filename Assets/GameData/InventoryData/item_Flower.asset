@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36346b426b8da3347b03a0859e95fb50, type: 3}
+  m_Name: item_Flower
+  m_EditorClassIdentifier: 
+  itemType: 0
+  itemName: flower
+  itemIcon: {fileID: 21300000, guid: ace365cce68519c4484232c0cbac2982, type: 3}
+  itemAmount: 1
+  description: "\u7EA2\u8272\u7684\u82B1\uFF0C\u80FD\u6062\u590D\u6781\u5C0F\u7684\u8840\u91CF\n\uFF0C\u4F46\u662F\u5973\u9A91\u58EB\u80FD\u5C06\u5176\u559D\u836F\u8349\u70BC\u5236\u8840\u74F6"
+  stackable: 1
+  weaponPrefab: {fileID: 0}
+  weaponAttackData: {fileID: 0}
+  weaponOverrideAnimator: {fileID: 0}
+  useableItemData: {fileID: 11400000, guid: 59d5867f6a77fb0428aac09c0fd6e058, type: 2}

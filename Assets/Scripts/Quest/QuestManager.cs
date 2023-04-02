@@ -71,6 +71,7 @@ public class QuestManager : SingleT<QuestManager>
         {
             if (task.isFinished)
             {
+                
                 continue;//如果任务已经完成，则跳过本次
             }
             var matchTask = task.questData.questRequires.Find(r => r.name == requireName);

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def0447ba7aa0cb45b5f9a0bd64a7c75, type: 3}
+  m_Name: FinishedTalk3
+  m_EditorClassIdentifier: 
+  dialoguePieces:
+  - thisPieceID: 0
+    speakerImage: {fileID: 21300000, guid: 1269120137921734b9c1d2514a54b02e, type: 3}
+    text: "\u8BF7\u7EE7\u7EED\u5728\u8FD9\u7247\u5927\u9646\u4E0A\u5192\u9669\u628A"
+    questdata: {fileID: 0}
+    optionsOfthisPiece:
+    - targetPieceID: -1
+      text: "\u3002\u3002\u3002"
+      isTakeQuest: 0

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03350f549774d7b48b80f76105b35396, type: 3}
   m_Name: mushroom
   m_EditorClassIdentifier: 
-  health: 10
+  health: 5

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8126ac7a45343b4e90b18e7f9f6d44c, type: 3}
+  m_Name: Place
+  m_EditorClassIdentifier: 
+  quesName: "\u63A2\u7D22\u9AD8\u539F"
+  description: "\u8FD9\u7247\u5927\u9646\u65E0\u7A77\u65E0\u5C3D\uFF0C\u8BF7\u524D\u5F80\u9AD8\u5C71\u4E0A\u63A2\u7D22\uFF0C\u63A2\u7D22\u5B8C\u6210\u4E4B\u540E\u8BB0\u5F97\u56DE\u6765\u5411\u9A91\u58EB\u7D22\u8981\u4F60\u7684\u793C\u7269"
+  isStarted: 0
+  isComplete: 0
+  isFinished: 0
+  questRequires:
+  - name: place
+    requireAmount: 1
+    currentAmount: 0
+  - name: Bandit
+    requireAmount: 2
+    currentAmount: 0
+  rewards:
+  - itemData: {fileID: 11400000, guid: 7593b3f755f63e74b89bb1f7a5585ee2, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: 8fe5c9ab4f4ec0e4a93ca3972c7f3261, type: 2}
+    amount: 10

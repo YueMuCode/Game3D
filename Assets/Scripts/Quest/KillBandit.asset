@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8126ac7a45343b4e90b18e7f9f6d44c, type: 3}
+  m_Name: KillBandit
+  m_EditorClassIdentifier: 
+  quesName: "\u6D88\u706D\u602A\u7269"
+  description: "\u6700\u8FD1\u51FA\u73B0\u4E86\u4E00\u4F19\u5F3A\u76D7\uFF0C\u4ED6\u4EEC\u5F71\u54CD\u4E86\u6751\u5E84\u7684\u548C\u5E73\uFF0C\u8BF7\u6D88\u706D\u6E38\u8361\u7684\u5F3A\u76D7"
+  isStarted: 0
+  isComplete: 0
+  isFinished: 0
+  questRequires:
+  - name: Slime
+    requireAmount: 2
+    currentAmount: 0
+  - name: TurtleShell
+    requireAmount: 2
+    currentAmount: 0
+  rewards:
+  - itemData: {fileID: 11400000, guid: 8fe5c9ab4f4ec0e4a93ca3972c7f3261, type: 2}
+    amount: 5
+  - itemData: {fileID: 11400000, guid: 33ff5222aa8bbab4f87b0584eabc652f, type: 2}
+    amount: 1

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8126ac7a45343b4e90b18e7f9f6d44c, type: 3}
+  m_Name: Grass
+  m_EditorClassIdentifier: 
+  quesName: "\u6536\u96C6\u836F\u6750"
+  description: "\u5973\u9A91\u58EB\u9700\u8981\u4E00\u4E9B\u836F\u8349\u70BC\u5236\u8840\u74F6\uFF0C\u8BF7\u5E2E\u5973\u9A91\u58EB\u6536\u96C6\u4E00\u4E9B\u836F\u8349"
+  isStarted: 0
+  isComplete: 0
+  isFinished: 0
+  questRequires:
+  - name: Grass
+    requireAmount: 2
+    currentAmount: 0
+  - name: flower
+    requireAmount: 4
+    currentAmount: 0
+  rewards:
+  - itemData: {fileID: 11400000, guid: 8fe5c9ab4f4ec0e4a93ca3972c7f3261, type: 2}
+    amount: 1
+  - itemData: {fileID: 11400000, guid: caf80958f7917ea47add603f7c7fa7b2, type: 2}
+    amount: -2
+  - itemData: {fileID: 11400000, guid: aa83405a8a5b2684aa9071ca303e1513, type: 2}
+    amount: -4

@@ -71,6 +71,7 @@ public class DialogueUIController : SingleT<DialogueUIController>
         else
         {
             nextButtonPrefab.interactable = false;
+            nextButtonPrefab.gameObject.SetActive(true);
             nextButtonPrefab.transform.GetChild(0).gameObject.SetActive(false);
         }
 

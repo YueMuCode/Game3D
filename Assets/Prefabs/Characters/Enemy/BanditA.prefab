@@ -2539,6 +2539,7 @@ GameObject:
   - component: {fileID: 9094567592472648409}
   - component: {fileID: 9094567592472648408}
   - component: {fileID: 7787563570892428718}
+  - component: {fileID: 1688677532}
   m_Layer: 0
   m_Name: BanditA
   m_TagString: Enemy
@@ -2621,8 +2622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5699bc2bb7b3f0748b88bb6c67efdc7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterData_so: {fileID: 0}
   tempplateCharacterData_so: {fileID: 11400000, guid: 8f844bb7969d2704785daf4855b49989, type: 2}
   attackData_SO: {fileID: 11400000, guid: d918a842ff70d8347ae97b63f1779074, type: 2}
+  templateAttackData_SO: {fileID: 0}
 --- !u!114 &9094567592472648410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2638,7 +2641,7 @@ MonoBehaviour:
   anim: {fileID: 0}
   characterStats: {fileID: 0}
   sightRadius: 6
-  patrolRadius: 5
+  patrolRadius: 40
   attackTarget: {fileID: 0}
   isGUARD: 0
   guardRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -2697,6 +2700,19 @@ MonoBehaviour:
   barPoint: {fileID: 8525287765969492906}
   alwaysVisible: 0
   visibleTime: 5
+--- !u!114 &1688677532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9094567592472648391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c19840422e668d488ab082cf9f70aa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mayDropItemArrs: []
 --- !u!1 &9094577291222965829
 GameObject:
   m_ObjectHideFlags: 0

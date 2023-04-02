@@ -1294,6 +1294,7 @@ MonoBehaviour:
   characterData_so: {fileID: 11400000, guid: cbe74c89648eee349a435f57a353e9de, type: 2}
   tempplateCharacterData_so: {fileID: 11400000, guid: cbe74c89648eee349a435f57a353e9de, type: 2}
   attackData_SO: {fileID: 11400000, guid: 5286a83b8ad65684d96910314328ead9, type: 2}
+  templateAttackData_SO: {fileID: 11400000, guid: 5286a83b8ad65684d96910314328ead9, type: 2}
 --- !u!114 &2056869480
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1310,6 +1311,7 @@ MonoBehaviour:
   healthSlider: {fileID: 0}
   expSlider: {fileID: 0}
   text: {fileID: 0}
+  healthText: {fileID: 0}
 --- !u!114 &806191004583890241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1323,6 +1325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentOfWeapon: {fileID: 8263273344460549794}
+  temp: {fileID: 0}
 --- !u!1 &8260876149746701724
 GameObject:
   m_ObjectHideFlags: 0

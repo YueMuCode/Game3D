@@ -37,6 +37,7 @@ public class OptionUI : MonoBehaviour
                     if (QuestManager.Instance.GetTask(tasksQuestData.questData).isComplete)
                     {
                         tasksQuestData.questData.GiveRewards(); ;
+                        GameManager.Instance.playerStats.currentExp += 30;
                         QuestManager.Instance.GetTask(tasksQuestData.questData).isFinished = true;
                     }
                 }

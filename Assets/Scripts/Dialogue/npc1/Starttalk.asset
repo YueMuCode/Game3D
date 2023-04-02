@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def0447ba7aa0cb45b5f9a0bd64a7c75, type: 3}
+  m_Name: Starttalk
+  m_EditorClassIdentifier: 
+  dialoguePieces:
+  - thisPieceID: 0
+    speakerImage: {fileID: 21300000, guid: d4acef2583fd0a840bcc66d0cb29f209, type: 3}
+    text: "\u4EB2\u7231\u7684\u9A91\u58EB\uFF0C\u4F60\u597D"
+    questdata: {fileID: 0}
+    optionsOfthisPiece:
+    - targetPieceID: 1
+      text: "\u4F60\u597D"
+      isTakeQuest: 1
+  - thisPieceID: 1
+    speakerImage: {fileID: 21300000, guid: d4acef2583fd0a840bcc66d0cb29f209, type: 3}
+    text: "\u5728\u8FD9\u7247\u5927\u9646\u4E0A\u5192\u9669\uFF0C\u4E00\u4E9B\u6CBB\u7597\n\u836F\u54C1\u662F\u5FC5\u987B\u7684\uFF0C\u867D\u7136\u836F\u8349\u548C\n\u8611\u83C7\u80FD\u6062\u590D\u4E00\u4E9B\u8840\u91CF\uFF0C\u4F46\u662F\n\u8FDC\u4E0D\u5982\u836F\u70BC\u5236\u6210\u7684\u8840\u74F6\u3002\u5982\u679C\n\u4F60\u80FD\u5E2E\u6211\u6536\u96C6\u4E00\u4E9B\u836F\u6750\uFF0C\u6211\u5C06\u4F1A\u7ED9\u4F60\n\u63D0\u4F9B\u4E00\u4E9B\u8840\u74F6\u3002\n"
+    questdata: {fileID: 11400000, guid: ac1d86e24d1a04e4db9f0b7b5c352ab1, type: 2}
+    optionsOfthisPiece:
+    - targetPieceID: 2
+      text: "\u597D\u7684\uFF0C\u6211\u4F1A\u5E2E\u4F60\u6536\u96C6\u836F\u8349"
+      isTakeQuest: 1
+    - targetPieceID: -1
+      text: "\u4E0D\u4E86"
+      isTakeQuest: 0
+  - thisPieceID: 2
+    speakerImage: {fileID: 21300000, guid: d4acef2583fd0a840bcc66d0cb29f209, type: 3}
+    text: "\u671F\u5F85\u4F60\u7684\u597D\u8FD0"
+    questdata: {fileID: 0}
+    optionsOfthisPiece:
+    - targetPieceID: -1
+      text: "\u6211\u4E00\u4F1A\u5C31\u56DE\u6765"
+      isTakeQuest: 0

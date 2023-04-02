@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: def0447ba7aa0cb45b5f9a0bd64a7c75, type: 3}
+  m_Name: Starttalk2
+  m_EditorClassIdentifier: 
+  dialoguePieces:
+  - thisPieceID: 0
+    speakerImage: {fileID: 21300000, guid: 1269120137921734b9c1d2514a54b02e, type: 3}
+    text: "\u8FD9\u7247\u5927\u9646\u4EC0\u4E48\u65F6\u5019\u53C8\u6765\u4E86\u4E00\u4F4D\u52C7\u8005"
+    questdata: {fileID: 0}
+    optionsOfthisPiece:
+    - targetPieceID: 1
+      text: "\u3002\u3002\u3002\u3002\u3002\u3002"
+      isTakeQuest: 0
+  - thisPieceID: 1
+    speakerImage: {fileID: 21300000, guid: 1269120137921734b9c1d2514a54b02e, type: 3}
+    text: "\u6700\u8FD1\u5468\u56F4\u51FA\u73B0\u4E86\u4E00\u4E9B\u53F2\u83B1\u59C6\u548C\u5176\u4ED6\u602A\u7269\uFF0C\u4F60\u80FD\u5E2E\u6211\u6D88\u706D\u4ED6\u4EEC\u5417\n"
+    questdata: {fileID: 11400000, guid: df4569be52408dc4f9bdff14abcfbdda, type: 2}
+    optionsOfthisPiece:
+    - targetPieceID: 2
+      text: "\u6CA1\u95EE\u9898"
+      isTakeQuest: 1
+    - targetPieceID: 3
+      text: "\u4E0D\u4E86"
+      isTakeQuest: 0
+  - thisPieceID: 2
+    speakerImage: {fileID: 21300000, guid: 1269120137921734b9c1d2514a54b02e, type: 3}
+    text: "\u5F88\u597D\uFF0C\u4F60\u662F\u4E00\u540D\u5408\u683C\u7684\u52C7\u58EB\uFF0C\u671F\u5F85\u4F60\u7684\u597D\u8FD0\uFF0C\u8BB0\u5F97\u5C0F\u5FC3\u4E4C\u9F9F\u7684\u523A\u7532"
+    questdata: {fileID: 0}
+    optionsOfthisPiece:
+    - targetPieceID: -1
+      text: "\u597D\u7684"
+      isTakeQuest: 0
+  - thisPieceID: 3
+    speakerImage: {fileID: 21300000, guid: 1269120137921734b9c1d2514a54b02e, type: 3}
+    text: "\u600E\u4E48\u4E86\uFF0C\u4F60\u8FD8\u6CA1\u51C6\u5907\u597D\u5417\uFF1F"
+    questdata: {fileID: 0}
+    optionsOfthisPiece:
+    - targetPieceID: -1
+      text: "\u5BF9\u7684"
+      isTakeQuest: 0
