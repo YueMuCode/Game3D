@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public float maxSpeed = 10f;
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
+    public Vector3 rollDir;//翻滚的方向
+    public float rollSpeed;//翻滚的速度；
     [Header("重力参数和地面的检测参数")]
     public float gravity = -9.8f;
     public Vector3 velocity = Vector3.zero;
@@ -57,12 +59,17 @@ public class PlayerController : MonoBehaviour,IDamageTable
     void Update()
     {
         isDead = characterStats.currentHealth <= 0;
-        updateAttackStats();
-        PlayerMove();
+        if(!isDead)
+        {
+            updateAttackStats();
+            PlayerMove();
+            
+        }
         PlayerAnimation();
         if (isDead)
         {
             GameManager.Instance.NotifyObserver();//开始广播
+            
         }
         isLevelUp();
         UpdatePlayerHealth?.Invoke(1);//因为healthbar的初始化不能够直接在start中，是代码的执行顺序问题这个bug详细记录，去看3.28日的笔记
@@ -81,7 +88,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         }
         if (isGround && Input.GetButtonDown("Jump"))
         {
-            //PlayerAnimation()
+            //PlayerAnimation()中实现
         }
         if (isInputBlocked)
         {
@@ -96,6 +103,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            rollDir = moveDir;
             character.Move(moveDir.normalized * speed * Time.deltaTime);//,因为下方的函数使用了movdToWards,就是朝中面向的方向平移，那么这里可用可不用
 
             isMove = true;
@@ -115,6 +123,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     {
 
         // Vector3 horizontalVelocity = new Vector3(character.velocity.x, 0, character.velocity.z);
+        //实现人物的行走和奔跑
         float deSpeed = 0f;
         if (isMove&& !Input.GetKeyDown(KeyCode.LeftShift))
         {
@@ -127,8 +136,40 @@ public class PlayerController : MonoBehaviour,IDamageTable
             deSpeed = maxSpeed;
             Debug.Log("按下了shift");
         }
-        animSpeed = Mathf.MoveTowards(animSpeed, deSpeed,Time.deltaTime*20);;
+        animSpeed = Mathf.MoveTowards(animSpeed, deSpeed,Time.deltaTime*20);
         anim.SetFloat("Speed", animSpeed);//
+
+        //实现人物的翻滚
+
+        if(Input.GetKeyDown(KeyCode.LeftControl)&&isInputBlocked)
+        {
+            //翻滚是一个减速过程
+            //减速系数
+            rollSpeed = 200f;
+            anim.SetTrigger("Roll");
+           // float rollSpeedDropMultiplier = 5f;
+            //按帧减速
+            //rollSpeed -= rollSpeed * rollSpeedDropMultiplier * Time.deltaTime;
+
+            //设置下限
+          //  float rollSpeedMinimum = 5f;
+            //小于下限切换至行走状态
+            //if (rollSpeed < rollSpeedMinimum)
+            //{
+
+            //}
+            character.Move( rollDir * rollSpeed*Time.deltaTime);
+
+        }
+     
+
+
+
+
+
+
+
+
         isGround = Physics.CheckSphere(groundCheck.position, checkRadius, layerMask);
         if (isGround && Input.GetButtonDown("Jump")&&isInputBlocked)
         {
@@ -142,7 +183,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
             
         }
         if(anim.GetCurrentAnimatorStateInfo(0).IsName("Land")||anim.GetCurrentAnimatorStateInfo(1).IsName("Hit")||anim.GetCurrentAnimatorStateInfo(2).IsName("Attack")
-            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack")|| anim.GetCurrentAnimatorStateInfo(1).IsName("Dizzy"))
+            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack")|| anim.GetCurrentAnimatorStateInfo(1).IsName("Dizzy")||anim.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
         {           
             isInputBlocked = false;
             isAttack = true;
@@ -153,7 +194,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
             isAttack = false;
         }
         anim.SetBool("Dead", isDead);
-        if(Input.GetKeyDown(KeyCode.Mouse0)&&!InteractWithUI())
+        if(Input.GetKeyDown(KeyCode.Mouse0)&&!InteractWithUI()&&!isDead)
         {
             //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");

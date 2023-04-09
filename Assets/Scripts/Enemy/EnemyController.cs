@@ -333,6 +333,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         playerIsDead = true;
         isChase = false;
         isFollow = false;
+        agent.isStopped = true;
         attackTarget = null;
         anim.SetBool("Win", true);
     }

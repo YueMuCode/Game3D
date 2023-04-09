@@ -12,6 +12,7 @@ public class DialogueContoller : MonoBehaviour
         {
             canTalk = true;
             Debug.Log("你进入了交互的范围");
+            IntroductioUI.Instance.signPrefab.SetActive(true);
         }
 
     }
@@ -21,6 +22,7 @@ public class DialogueContoller : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             DialogueUIController.Instance.dialoguePanelPrefab.SetActive(false);
+            IntroductioUI.Instance.signPrefab.SetActive(false) ;
         }
         canTalk = false;
     }
