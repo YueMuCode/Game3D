@@ -5,6 +5,16 @@ using System;
 using UnityEngine.EventSystems;
 public class PlayerController : MonoBehaviour,IDamageTable
 {
+    [Header("脚步攻击升级受伤等音效")]
+    public AudioClip footClip;
+    public AudioClip attackClip;
+   // public AudioClip getHitClip;
+    public AudioClip levelUpClip;
+    public AudioClip dizzyClip;
+    public AudioClip rollClip;
+    public AudioClip jumpClip;
+    public AudioClip landClip;
+
     
     public CharacterController character;    
     public Transform cam;
@@ -159,7 +169,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
 
             //}
             character.Move( rollDir * rollSpeed*Time.deltaTime);
-
+            AudioManager.Instance.PlayClip(landClip);
         }
      
 
@@ -174,16 +184,25 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if (isGround && Input.GetButtonDown("Jump")&&isInputBlocked)
         {
             velocity.y = Mathf.Sqrt(jumoHeight * -2 * gravity);
+            AudioManager.Instance.PlayClip(jumpClip);
             anim.SetTrigger("Jump");
         }
         if(isGround)
         {
 
             anim.SetBool("Ground", isGround);
-            
+            //AudioManager.Instance.PlayClip(landClip);
+
+
         }
-        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Land")||anim.GetCurrentAnimatorStateInfo(1).IsName("Hit")||anim.GetCurrentAnimatorStateInfo(2).IsName("Attack")
-            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack")|| anim.GetCurrentAnimatorStateInfo(1).IsName("Dizzy")||anim.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
+        if(anim.GetCurrentAnimatorStateInfo(0).IsName("Land")
+            ||anim.GetCurrentAnimatorStateInfo(1).IsName("Hit")
+            ||anim.GetCurrentAnimatorStateInfo(2).IsName("Attack")
+            || anim.GetCurrentAnimatorStateInfo(2).IsName("Attack2")
+            || anim.GetCurrentAnimatorStateInfo(2).IsName("Attack3")
+            || anim.GetCurrentAnimatorStateInfo(2).IsName("CriticalAttack")
+            || anim.GetCurrentAnimatorStateInfo(1).IsName("Dizzy")
+            ||anim.GetCurrentAnimatorStateInfo(0).IsName("Roll"))
         {           
             isInputBlocked = false;
             isAttack = true;
@@ -198,6 +217,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
             //  Debug.Log("按下了鼠标左键");
             anim.SetTrigger("Attack");
+            
             isCritical = UnityEngine.Random.value <= characterStats.criticalChance;
             UpdatePlayerHealth?.Invoke(1);
         }
@@ -208,9 +228,11 @@ public class PlayerController : MonoBehaviour,IDamageTable
         int temp;
         if(characterStats.level<characterStats.maxLevel&&characterStats.currentExp>=characterStats.needExp)
         {
-            Debug.Log("升级！");
+            //Debug.Log("升级！");
+
             temp = characterStats.needExp;
             characterStats.level += 1;
+            AudioManager.Instance.PlayClip(levelUpClip);//播放升级的音效
             characterStats.needExp += characterStats.level * 20;
 
             //进行防御、攻击的升级等等
@@ -228,13 +250,14 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public void GetHit(float damage,Transform attacker)
     {
         float realDamage = Mathf.Max(1, damage - damage * (characterStats.currentDefend / 10));
-
-
+        //  AudioManager.Instance.PlayClip(getHitClip);
+        AudioManager.Instance.PlayClip(dizzyClip);
 
         characterStats.currentHealth -= realDamage;   
         if(attacker.GetComponent<EnemyController>().isCritical&& !attacker.GetComponent<EnemyController>().skill)//远程攻击不能暴击
         {
             anim.SetTrigger("Hit");
+            AudioManager.Instance.PlayClip(dizzyClip);
         }
         else
         {
@@ -251,9 +274,10 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if(FindObjectOfType<LHandHitPoint>())
         {
             FindObjectOfType<LHandHitPoint>().GetComponent<BoxCollider>().enabled = true;
-          
+           
         }
-       
+        AudioManager.Instance.PlayClip(attackClip);
+
     }
     public void EndAttackCheckLeftHand()
     {
@@ -261,8 +285,9 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if (FindObjectOfType<LHandHitPoint>())
         {
             FindObjectOfType<LHandHitPoint>().GetComponent<BoxCollider>().enabled = false;
-           
+            
         }
+       
     }
 
     public void StartAttackCheckRightHand()
@@ -270,8 +295,9 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if (FindObjectOfType<RHandHitPoint>())
         {
             FindObjectOfType<RHandHitPoint>().GetComponent<BoxCollider>().enabled = true;
-
+            
         }
+        AudioManager.Instance.PlayClip(attackClip);
     }
     public void EndAttackCheckRightHand()
     {
@@ -314,5 +340,19 @@ public class PlayerController : MonoBehaviour,IDamageTable
         }
         return false;
     }
-  
+
+    //脚步
+   
+    void RunFootLeft()
+    {
+        AudioManager.Instance.PlayClip(footClip);
+    }
+    void RunFootRight()
+    {
+        AudioManager.Instance.PlayClip(footClip);
+    }
+    void Land()
+    {
+        AudioManager.Instance.PlayClip(landClip);
+    }
 }
