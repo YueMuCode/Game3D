@@ -18,6 +18,7 @@ public class UseOrEquipItem : MonoBehaviour
         {
             Instantiate(weapon.weaponPrefab, parentOfWeapon);
             GetComponent<Animator>().runtimeAnimatorController = weapon.weaponOverrideAnimator;
+            AudioManager.Instance.PlayClip(ClipManager.Instance.equipWeaponClip);
         }
 
         //将人物的攻击属性切换成武器的攻击属性
