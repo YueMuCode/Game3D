@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     public GameObject attackTarget;//攻击目标
     protected float normalSpeed;
     public bool isGUARD;//是不是站桩怪
-    protected Vector3 guardPos;//站桩的坐标
+    public  Vector3 guardPos;//站桩的坐标
     public Quaternion guardRotation;
     protected Vector3 wayPoint;//随机的巡逻点
     public float lookAtTime;
@@ -39,16 +39,22 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     [Header("其他参数")]
     bool playerIsDead = false;
     public bool skill;
-
-    
+    public float addPooltime=2f;
+    bool hasbreaken = false;
     public event Action<int> UpdateHealthBarOnAttack;//用于更新血条
+
+
+
+    public GameObject Temp;
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         characterStats=GetComponent<CharacterStats>();
         guardPos = transform.position;//获取站桩的原始坐标
+        
         guardRotation = transform.rotation;
+        Temp = this.gameObject;
     }
 
     void Start()
@@ -59,6 +65,7 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
 
     void Update()
     {
+        
         isDead = characterStats.currentHealth <= 0;
         if(!playerIsDead)
         {
@@ -115,9 +122,10 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
         if(isDead)
         {
             enemyState = EnemyStates.DEAD;
+          
         }
 
-         else  if(isFoundPlayer())
+        else  if(isFoundPlayer())
         {
             enemyState = EnemyStates.CHASE; 
           //  Debug.Log("发现玩家！");
@@ -134,7 +142,22 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
                 CHASE();
                 break;
             case EnemyStates.DEAD:
-                DEAD();
+                if (this.gameObject.name == "Slime(Clone)" && !hasbreaken)
+                {
+                    //销毁血条
+                   
+                    GetComponent<EnemyHealthBar>().UITransform.gameObject.SetActive(false);
+                    hasbreaken = true;
+                }
+              
+                addPooltime -= Time.deltaTime;
+               
+                if (addPooltime<0)
+                {
+                    addPooltime = 2f;
+                    DEAD();
+                }
+                
                 break;
         }
     }
@@ -231,9 +254,54 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     }
     void DEAD()
     {
-        GetComponent<Collider>().enabled = false;
+
+        //addPooltime -= Time.deltaTime;
+        if (!GameManager.IsInitialized) return;
+        GameManager.Instance.RemoveObserver(this);
+        if (isDead && GetComponent<DropLoot>() != null)
+        {
+            GetComponent<DropLoot>().BeginCheckIsDrpoItem();
+           // Debug.Log("执行了");
+        }
+        
+        //  GetComponent<Collider>().enabled = false;
         agent.radius = 0;
-        Destroy(this.gameObject, 2f);
+        if (this.gameObject.name== "Slime(Clone)")
+        {
+            if (QuestManager.IsInitialized && isDead)//死亡就检测进度
+            {
+                QuestManager.Instance.UpdateQuestProgress(this.name, 1);
+                Debug.Log("yes");
+            }
+            //重置参数
+            if (isGUARD)
+            {
+                enemyState = EnemyStates.GUARD;//站桩
+            }
+            else
+            {
+                enemyState = EnemyStates.PATROL;//巡逻
+                GetNewWayPoint();
+            }
+            isChase =false;
+            isWalk = false;
+            isFollow = false;//是否被拉脱战
+            isCritical = false;//当前是否暴击（需要和攻击数据中的暴击率进行计算获取值）
+            isDead = false;
+            hasbreaken = false;
+            characterStats.currentHealth = characterStats.maxHealth;
+            agent.radius = 0.5f;
+            SlimePoolController.Instance.isDead = true;
+            
+            SlimeObjectPool.Instance.RecoverSlime(this.gameObject);
+           
+        }
+        else
+        {
+            Destroy(this.gameObject, 2f);
+          
+        }
+       
     }
 
     void GetNewWayPoint()//获取随机的巡逻点
@@ -309,17 +377,22 @@ public class EnemyController : MonoBehaviour,IEndGameObserver,IDamageTable
     }
     void OnDisable()
     {
-        if (!GameManager.IsInitialized) return;
-        GameManager.Instance.RemoveObserver(this);
-        if(isDead&& GetComponent<DropLoot>()!=null)
-        {
-            GetComponent<DropLoot>().BeginCheckIsDrpoItem();
-            Debug.Log("执行了");
-        }
-        if (QuestManager.IsInitialized && isDead)//死亡就检测进度
+
+        // SlimeObjectPool.Instance.AddObject(SlimePoolController.Instance.list[0]);
+        // SlimePoolController.Instance.list[0].SetActive(false);
+        // SlimePoolController.Instance.list.RemoveAt(0);
+        // GameObject obj = SlimeObjectPool.Instance.GetObject();
+        // //obj.SetActive(true);
+        // SlimePoolController.Instance.list.Add(obj);
+        //// obj.SetActive(true);
+
+        if (QuestManager.IsInitialized && isDead&&this.gameObject.name!= "Slime(Clone)")//死亡就检测进度
         {
             QuestManager.Instance.UpdateQuestProgress(this.name, 1);
+            Debug.Log("yes");
         }
+
+
 
     }
 

@@ -18,7 +18,7 @@ MonoBehaviour:
   isComplete: 0
   isFinished: 0
   questRequires:
-  - name: Slime
+  - name: Slime(Clone)
     requireAmount: 2
     currentAmount: 0
   - name: TurtleShell

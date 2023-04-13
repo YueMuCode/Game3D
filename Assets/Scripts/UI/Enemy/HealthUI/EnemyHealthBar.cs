@@ -6,12 +6,13 @@ public class EnemyHealthBar : MonoBehaviour
 {
     public GameObject healthBarUIPrafab;//获取UI预制体
     public Transform cam;//获取摄像机的方向
-    Transform UITransform;//拿到生成出来的预制体的canvastransform通过这个拿到slider子物体
+    public Transform UITransform;//拿到生成出来的预制体的canvastransform通过这个拿到slider子物体
     public Transform barPoint;
     public bool alwaysVisible=false;  //是否是一直显示的
     public float visibleTime; //可视时间 
     private float timeLeft;  //剩余的可显示时间
     EnemyController enemyStats;
+    public bool isDead;
     private void Start()
     {
        
@@ -19,6 +20,10 @@ public class EnemyHealthBar : MonoBehaviour
         enemyStats = GetComponent<EnemyController>();
         enemyStats.UpdateHealthBarOnAttack += UpdateHealth;
         InitInstantiateUI();
+    }
+    private void OnEnable()
+    {
+        //nitInstantiateUI();
     }
     void InitInstantiateUI()
     {
@@ -32,10 +37,16 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void Update()
     {
+      //  Debug.Log(isDead);
+        if(UITransform==null)
+        {
+          //  Debug.Log(1);
+        }
         
         if (enemyStats.isDead&&UITransform)
         {
             Destroy(UITransform.gameObject);
+            Debug.Log(111);
         }
         if(UITransform)
         {

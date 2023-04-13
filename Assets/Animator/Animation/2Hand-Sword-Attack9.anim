@@ -95000,7 +95000,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.56666666
-    functionName: EndAttackCheckRightHand
+    functionName: EndAttackCheckWeaponRightHand
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
