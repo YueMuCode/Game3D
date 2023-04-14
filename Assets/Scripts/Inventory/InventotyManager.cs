@@ -214,7 +214,7 @@ public class InventotyManager : SingleT<InventotyManager>
 
     #endregion
 
-    //检测背包和快捷栏物品
+    //检测背包和快捷栏里面是否有需要交付的物品
     public ItemsInInventory QuestItemInBag(ItemData_SO questItem)
     {
         return inventoryData_SO.listOfItems.Find(i => i.itemData == questItem);

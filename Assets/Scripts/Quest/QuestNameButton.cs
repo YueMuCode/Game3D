@@ -17,12 +17,12 @@ public class QuestNameButton : MonoBehaviour
         questDescription.text = currentQuestData.description;
         QuestUIController.Instance.SetupRequireList(currentQuestData);
 
-        foreach (Transform item in QuestUIController.Instance.rewardTransform)
+        foreach (Transform item in QuestUIController.Instance.rewardTransform)//点击按钮，销毁上一个任务的奖励物品显示
         {
             Destroy(item.gameObject);
         }
 
-        foreach (var item in currentQuestData.rewards)
+        foreach (var item in currentQuestData.rewards)//更新奖励的物品列表
         {
            
             QuestUIController.Instance.SetupRewardItem(item.itemData, item.amount);

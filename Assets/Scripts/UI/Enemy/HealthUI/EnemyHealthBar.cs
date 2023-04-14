@@ -37,13 +37,9 @@ public class EnemyHealthBar : MonoBehaviour
 
     private void Update()
     {
-      //  Debug.Log(isDead);
-        if(UITransform==null)
-        {
-          //  Debug.Log(1);
-        }
+     
         
-        if (enemyStats.isDead&&UITransform)
+        if (enemyStats.isDead&&UITransform&&this.gameObject.name!= "Slime(Clone)")
         {
             Destroy(UITransform.gameObject);
             Debug.Log(111);

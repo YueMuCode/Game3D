@@ -25,7 +25,7 @@ public class OptionUI : MonoBehaviour
     {
        if(currentPiece.questdata!=null)
         {
-            var tasksQuestData = new QuestManager.QuestTask();
+            var tasksQuestData = new QuestManager.QuestTask();//任务数据类型是QuestData_so,而manager里面存储已经接受的任务用的类型是QuestTask里面的内部类变量QuestData_so所以要先转型
             tasksQuestData.questData = Instantiate(currentPiece.questdata);//类似模板
 
 
@@ -45,8 +45,8 @@ public class OptionUI : MonoBehaviour
                 {
                    //为什么不能 tasksQuestData.isStarted=true?
                     QuestManager.Instance.tasks.Add(tasksQuestData);
-                    QuestManager.Instance.GetTask(tasksQuestData.questData).isStarted = true;//将放进去的任务的状态改变为什么不能直接在前面加
-                    foreach (var requireItem in tasksQuestData.questData.RequireTargetName())//直接查找任务物品是否在背包里面已经有了
+                    QuestManager.Instance.GetTask(tasksQuestData.questData).isStarted = true;
+                    foreach (var requireItem in tasksQuestData.questData.RequireTargetName())//直接查找每一需要的任务物品是否在背包里面已经有了
                     {
                         InventotyManager.Instance.CheckQuestItemInBag(requireItem);
                     }

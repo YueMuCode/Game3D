@@ -47,11 +47,11 @@ public class QuestManager : SingleT<QuestManager>
 
     public List<QuestTask> tasks = new List<QuestTask>();
 
-    public bool HaveQuest(QuestData_SO data)
+    public bool HaveQuest(QuestData_SO data)//检查是否已经接受过任务，即检查当前接受的任务列表里面是否有这个任务
     {
         if (data != null)
         {
-            return tasks.Any(q => q.questData.quesName == data.quesName);//用的linq的表达式，不是很理解，但是可以用循环实现就是查找tasks里面是否有questname
+            return tasks.Any(q => q.questData.quesName == data.quesName);//用的linq的表达式，可以用循环实现就是查找tasks里面是否有questname
         }
         else
         {
@@ -60,13 +60,13 @@ public class QuestManager : SingleT<QuestManager>
     }
     public QuestTask GetTask(QuestData_SO data)
     {
-        return tasks.Find(q => q.questData.quesName == data.quesName);//找到对应的值
+        return tasks.Find(q => q.questData.quesName == data.quesName);//在已经接受的任务
     }
     //敌人死亡 寻找物品
 
-    public void UpdateQuestProgress(string requireName, int amount)
+    public void UpdateQuestProgress(string requireName, int amount)//更新任务的进度
     {
-        foreach (var task in tasks)
+        foreach (var task in tasks)//可能两个任务都需要检测同一个物品
 
         {
             if (task.isFinished)
