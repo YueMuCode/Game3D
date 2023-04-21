@@ -47,6 +47,7 @@ public class DragItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
                 if(eventData.pointerEnter.GetComponent<SlotHolder>())
                 {
                     targetSlotHolder = eventData.pointerEnter.GetComponent<SlotHolder>();
+                   // Debug.Log(1);
                 }else
                 {
                     targetSlotHolder = eventData.pointerEnter.GetComponentInParent<SlotHolder>();//这种情况就是，这个格子有物品，那么这能从这个物品的父级拿到格子

@@ -51,19 +51,23 @@ public class PlayerHealthBar : MonoBehaviour
     {
         healthSlider.GetComponent<Slider>().maxValue = player.characterStats.maxHealth;
         healthSlider.GetComponent<Slider>().value = GetComponent<PlayerController>().characterStats.currentHealth;
+       // Debug.Log(1);
     }
 
     void UpdatePlayerExpUI(int a)
     {
         expSlider.GetComponent<Slider>().maxValue = player.characterStats.needExp;
         expSlider.GetComponent<Slider>().value = player.characterStats.currentExp;
+        //Debug.Log(2);
     }
     void UpdateLevelTextUI(int a)
     {
         text.GetComponent<Text>().text = "LV" + player.characterStats.level.ToString("00");
+       // Debug.Log(3);
     }
     void UpdateHealthTextUI(int a)
     {
+       // Debug.Log(4);
         healthText.GetComponent<Text>().text = GetComponent<PlayerController>().characterStats.currentHealth.ToString("00") + "/" + GetComponent<PlayerController>().characterStats.maxHealth.ToString("00");
     }
 

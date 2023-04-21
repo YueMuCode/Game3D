@@ -60,7 +60,7 @@ public class DialogueUIController : SingleT<DialogueUIController>
       //  mainTextPrefab.text = piece.text;//然后加载对话的内容
         mainTextPrefab.DOText(piece.text, 1.5f);
 
-        if(piece.optionsOfthisPiece.Count==0&&currentDialogueData.dialoguePieces.Count>0)
+        if(piece.optionsOfthisPiece.Count==0&&currentDialogueData.dialoguePieces.Count>0)//控制对话右下角的next按钮
         {
             nextButtonPrefab.interactable = true;
             nextButtonPrefab.gameObject.SetActive(true);

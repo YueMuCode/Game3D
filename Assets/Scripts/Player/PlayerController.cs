@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
     public float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     public Vector3 rollDir;//翻滚的方向
+    public float attackDir;//攻击的方向。
     public float rollSpeed;//翻滚的速度；
     [Header("重力参数和地面的检测参数")]
     public float gravity = -9.8f;
@@ -63,13 +64,13 @@ public class PlayerController : MonoBehaviour,IDamageTable
         anim = GetComponent<Animator>();
         characterStats = GetComponent<CharacterStats>();
         InitPlayerStats();
-  
         GameManager.Instance.RigisterPlayer(characterStats);//将人物的数据注册给manager
     }
     void Update()
     {
         isDead = characterStats.currentHealth <= 0;
-        if(!isDead)
+        attackDir = cam.eulerAngles.y;
+        if (!isDead)
         {
             updateAttackStats();
             PlayerMove();
@@ -83,7 +84,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         }
         isLevelUp();
         UpdatePlayerHealth?.Invoke(1);//因为healthbar的初始化不能够直接在start中，是代码的执行顺序问题这个bug详细记录，去看3.28日的笔记
-
+        
     }
     void PlayerMove()//这个函数完成了人物的跑路功能，以及将重力的效果添加给人物，使人物在移动的时候能够下落
     {
@@ -96,10 +97,12 @@ public class PlayerController : MonoBehaviour,IDamageTable
         {
             velocity.y = 0;
         }
-        if (isGround && Input.GetButtonDown("Jump"))
-        {
-            //PlayerAnimation()中实现
-        }
+          
+        
+        //if (isGround && Input.GetButtonDown("Jump"))
+        //{
+        //    //PlayerAnimation()中实现
+        //}
         if (isInputBlocked)
         {
              horizontal = Input.GetAxisRaw("Horizontal");
@@ -109,30 +112,26 @@ public class PlayerController : MonoBehaviour,IDamageTable
         Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
         if (direction.magnitude >= 0.1f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
+            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;//获取目标方向
+            //float angle = ;        
+            transform.rotation = Quaternion.Euler(0f, Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime), 0f);//这里是让玩家朝指定的方向逐渐转身
             Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            rollDir = moveDir;
-            character.Move(moveDir.normalized * speed * Time.deltaTime);//,因为下方的函数使用了movdToWards,就是朝中面向的方向平移，那么这里可用可不用
+            rollDir = moveDir;    
+            character.Move(moveDir.normalized * speed * Time.deltaTime);//，让玩家移动，因为下方的函数使用了movdToWards+动画,就是朝中面向的方向平移，那么这里可用可不用
 
             isMove = true;
         }else
         {
             isMove = false;
         }
-        
-
     }
-    void updateAttackStats()
+    void updateAttackStats()//实现角色动画连击
     {
         anim.SetFloat("AttackTime", Mathf.Repeat(anim.GetCurrentAnimatorStateInfo(2).normalizedTime, 1f));
         anim.ResetTrigger("Attack");
     }
     void PlayerAnimation()//目前这个函数触发跑路、跳跃动画，触发跳跃功能
     {
-
-        // Vector3 horizontalVelocity = new Vector3(character.velocity.x, 0, character.velocity.z);
         //实现人物的行走和奔跑
         float deSpeed = 0f;
         if (isMove&& !Input.GetKeyDown(KeyCode.LeftShift))
@@ -144,46 +143,23 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if (Input.GetKey(KeyCode.LeftShift)&&isMove)
         {
             deSpeed = maxSpeed;
-            Debug.Log("按下了shift");
+            //Debug.Log("按下了shift");
         }
         animSpeed = Mathf.MoveTowards(animSpeed, deSpeed,Time.deltaTime*20);
         anim.SetFloat("Speed", animSpeed);//
-
         //实现人物的翻滚
-
         if(Input.GetKeyDown(KeyCode.LeftControl)&&isInputBlocked)
         {
-            //翻滚是一个减速过程
-            //减速系数
             rollSpeed = 200f;
             anim.SetTrigger("Roll");
-           // float rollSpeedDropMultiplier = 5f;
-            //按帧减速
-            //rollSpeed -= rollSpeed * rollSpeedDropMultiplier * Time.deltaTime;
-
-            //设置下限
-          //  float rollSpeedMinimum = 5f;
-            //小于下限切换至行走状态
-            //if (rollSpeed < rollSpeedMinimum)
-            //{
-
-            //}
             character.Move( rollDir * rollSpeed*Time.deltaTime);
             AudioManager.Instance.PlayClip(landClip);
         }
-     
-
-
-
-
-
-
-
-
         isGround = Physics.CheckSphere(groundCheck.position, checkRadius, layerMask);
         if (isGround && Input.GetButtonDown("Jump")&&isInputBlocked)
         {
             velocity.y = Mathf.Sqrt(jumoHeight * -2 * gravity);
+            character.Move(velocity * Time.deltaTime);
             AudioManager.Instance.PlayClip(jumpClip);
             anim.SetTrigger("Jump");
         }
@@ -216,6 +192,8 @@ public class PlayerController : MonoBehaviour,IDamageTable
         if(Input.GetKeyDown(KeyCode.Mouse0)&&!InteractWithUI()&&!isDead)
         {
             //  Debug.Log("按下了鼠标左键");
+            transform.rotation = Quaternion.Euler(0f, Mathf.SmoothDampAngle(transform.eulerAngles.y, attackDir, ref turnSmoothVelocity, 0f), 0f);
+           // Debug.Log(attackDir);
             anim.SetTrigger("Attack");
             
             isCritical = UnityEngine.Random.value <= characterStats.criticalChance;
@@ -340,7 +318,7 @@ public class PlayerController : MonoBehaviour,IDamageTable
         }
         return false;
     }
-
+     
     //脚步
    
     void RunFootLeft()

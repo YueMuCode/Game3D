@@ -24,7 +24,7 @@ public class GameManager :SingleT<GameManager>
         
     }
 
-    public void AddObserver(IEndGameObserver observer)//当要“观察者”启动就立马订阅这件事情（人物死亡），就将这个观察者存储起来
+    public void AddObserver(EnemyController observer)//当要“观察者”启动就立马订阅这件事情（人物死亡），就将这个观察者存储起来
     {
         endGameObservers.Add(observer);
     }

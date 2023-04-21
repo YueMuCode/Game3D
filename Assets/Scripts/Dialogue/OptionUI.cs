@@ -63,9 +63,7 @@ public class OptionUI : MonoBehaviour
         else
         {
             DialogueUIController.Instance.currentIndex = nextTargetID;
-           // Debug.Log("成功");
-          //  Debug.Log("当前的index" + DialogueUIController.Instance.currentIndex);
-            DialogueUIController.Instance.UpdateCurrentPiece(DialogueUIController.Instance.currentDialogueData.dialoguePieces[nextTargetID]);//这一段话这里就设置了，id必须从零开始设计\
+            DialogueUIController.Instance.UpdateCurrentPiece(DialogueUIController.Instance.currentDialogueData.dialoguePieces[nextTargetID]);
             
         }
     }

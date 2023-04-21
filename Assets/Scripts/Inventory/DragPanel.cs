@@ -13,7 +13,7 @@ public class DragPanel : MonoBehaviour, IDragHandler, IPointerDownHandler
     }
     public void OnDrag(PointerEventData eventData)
     {
-        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;//调整
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;//调整物体的中心位置
     }
 
     public void OnPointerDown(PointerEventData eventData)
